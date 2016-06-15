@@ -1,40 +1,44 @@
 'use strict';
 
 (function () {
-  var app = angular.module('antismashDbUi', [
-    'ngMaterial',
-    'ui.router'
+  var app = angular.module('antismash.db.ui', [
+    'ui.bootstrap',
+    'ui.router',
+    'antismash.db.ui.query'
   ]);
 
   app.config([
     '$stateProvider',
     '$urlRouterProvider',
-    '$mdThemingProvider',
-    function ($stateProvider, $urlRouterProvider, $mdThemingProvider) {
+    function ($stateProvider, $urlRouterProvider) {
 
 
-      $urlRouterProvider.otherwise('/query');
+      $urlRouterProvider.otherwise('/start');
 
       $stateProvider.
+        state('start', {
+          url: '/start',
+          templateUrl: 'start/start.html'
+        }).
+        state('stats', {
+          url: '/stats',
+          templateUrl: 'stats/stats.html'
+        }).
         state('query', {
           url: '/query',
-          template: '<p>Query antiSMASH DB</p>'
+          templateUrl: 'query/query.html',
+          controller: 'QueryController',
+          controllerAs: '$ctrl'
         }).
-        state('browse',{
+        state('browse', {
           url: '/browse',
-          template: '<p>Browse antiSMASH DB</p>'
+          templateUrl: 'browse/browse.html'
+        }).
+        state('help', {
+          url: '/help',
+          templateUrl: 'help/help.html'
         });
 
-      $mdThemingProvider.theme('default')
-        .primaryPalette('red')
-        .accentPalette('grey')
-        .warnPalette('orange');
     }]);
-
-  app.controller('MainController', function ($scope, $mdSidenav) {
-    $scope.openLeftMenu = function () {
-      $mdSidenav('left').toggle();
-    }
-  })
 
 })();

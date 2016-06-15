@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="antismash.db.ui">
 
 <head>
   <meta charset="utf-8">
@@ -8,61 +8,60 @@
 
   <title>antiSMASH database</title>
 
-  <link href="components/angular-material/angular-material.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+  <link href="components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/style.less" rel="stylesheet/less" type="text/css">
 </head>
 
-<body ng-app="antismashDbUi">
-  <div layout="column" layout-fill ng-controller="MainController">
-    <md-sidenav md-component-id="left" class="md-sidenav-left">
-      <md-list>
-        <md-list-item href="#/query">
-          <md-icon class="md-avatar-icon">search</md-icon>
-          <span>Query</span>
-          <span class="secondary">Query the database</span>
-        </md-list-item>
-        <md-list-item href="#/browse">
-          <md-icon class="md-avatar-icon">explore</md-icon>
-          <span>Browse</span>
-          <span class="secondary">Browse the database</span>
-        </md-list-item>
-      </md-list>
-    </md-sidenav>
-    <md-toolbar class="md-primary">
-      <div class="md-toolbar-tools">
-        <md-button aria-label="menu" ng-click="openLeftMenu()">
-          <md-icon>menu</md-icon>
-        </md-button>
-        <span>antiSMASH database</span>
-        <span flex></span>
-        <md-button class="md-fab md-mini" aria-label="Query the database" href="#/query">
-          <md-tooltip>
-            Query
-          </md-tooltip>
-          <md-icon>search</md-icon>
-        </md-button>
-        <md-button class="md-fab md-mini" aria-label="Browse the database" href="#/browse">
-          <md-tooltip>
-            Browse
-          </md-tooltip>
-          <md-icon>explore</md-icon>
-        </md-button>
+<body>
+  <nav class="navbar navbar-inverse navbar-antismash">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          <img src="images/antismash_logo.svg" alt="antiSMASH logo" width="30px">
+        </a>
+        <a class="navbar-brand" href="#">
+          antiSMASH database
+        </a>
       </div>
-    </md-toolbar>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#/stats"><i class="fa fa-bar-chart"></i> &nbsp; Statistics</a></li>
+        <li><a href="#/query"><i class="fa fa-search"></i> &nbsp; Query</a></li>
+        <li><a href="#/browse"><i class="fa fa-compass"></i> &nbsp; Browse</a></li>
+        <li><a href="#/help"><i class="fa fa-question"></i> &nbsp; Help</a></li>
+      </ul>
+    </div>
+  </nav>
 
-    <md-content flex layout-padding>
-      <ui-view>Loading...</ui-view>
-    </md-content>
-  </div>
+  <div class="container" ui-view>Foo</div>
 
+  <footer class="footer">
+    <div class="container">
+      <div class="col-sm-2">
+        <img src="images/antismash_logo.svg" height="100px">
+      </div>
+      <div class="col-sm-6">
+        Please cite: Blin <i>et al.</i>, in preparation
+      </div>
+      <div class="col-sm-4 org-logos">
+        Other logos
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="components/jquery/dist/jquery.min.js"></script>
+  <script src="components/less/dist/less.min.js"></script>
   <script src="components/angular/angular.min.js"></script>
-  <script src="components/angular-material/angular-material.min.js"></script>
-  <script src="components/angular-animate/angular-animate.min.js"></script>
-  <script src="components/angular-aria/angular-aria.min.js"></script>
-  <script src="components/angular-messages/angular-messages.min.js"></script>
   <script src="components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script src="query/query.js"></script>
   <script src="app.js"></script>
+  <script type="text/javascript">
+$(document).ready(function(){
+})
+  </script>
 </body>
 
 </html>
