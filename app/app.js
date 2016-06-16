@@ -4,7 +4,8 @@
   var app = angular.module('antismash.db.ui', [
     'ui.bootstrap',
     'ui.router',
-    'antismash.db.ui.query'
+    'antismash.db.ui.query',
+    'antismash.db.ui.stats'
   ]);
 
   app.config([
@@ -22,7 +23,9 @@
         }).
         state('stats', {
           url: '/stats',
-          templateUrl: 'stats/stats.html'
+          templateUrl: 'stats/stats.html',
+          controller: 'StatsController',
+          controllerAs: '$ctrl'
         }).
         state('query', {
           url: '/query',

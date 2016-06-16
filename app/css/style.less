@@ -14,12 +14,13 @@
 
 
 .footer {
-  position: absolute;
+
   bottom: 0;
   width: 100%;
   height: 160px;
   padding-top: 0.25em;
   border-top: 1px solid @antismash-red;
+  margin-top: 2em;
 }
 
 .org-logos {
@@ -28,4 +29,106 @@
 
 .cite-me {
   margin-top: 1em;
+}
+
+
+.secmet (@fg: black, @bg: white) {
+    background-color: @bg;
+    color: @fg;
+}
+
+.t1pks {
+    .secmet(purple, orange);
+}
+
+.t2pks {
+    .secmet(purple, sandybrown);
+}
+
+.t3pks {
+    .secmet(purple, lightsalmon);
+}
+
+.t4pks {
+    .secmet(purple, goldenrod);
+}
+
+.transatpks {
+    .secmet(maroon, chocolate);
+}
+
+.nrps {
+    .secmet(white, seagreen);
+}
+
+.terpene {
+    .secmet(white, purple);
+}
+
+.lantibiotic {
+    .secmet(blue, #ffff77);
+}
+
+.lantipeptide {
+    .lantibiotic
+}
+
+.bacteriocin {
+    .secmet(white, royalblue);
+}
+
+.ectoine {
+    .secmet(firebrick, yellowgreen);
+}
+
+.melanin {
+    .secmet(white, sienna);
+}
+
+.siderophore {
+    .secmet(white, crimson);
+}
+
+.butyrolactone {
+    .secmet(white, mediumpurple);
+}
+
+.hserlactone{
+    .secmet(black, tan);
+}
+
+.phenazine {
+    .secmet(black, plum);
+}
+
+.amglyccycl {
+    .secmet(black, yellowgreen);
+}
+
+.blactam {
+    .secmet(black, aliceblue);
+}
+
+.nucleoside {
+    .secmet(black, antiquewhite);
+}
+
+.phosphonate {
+    .secmet(black, mintcream);
+}
+
+.indole {
+    .secmet(black, peachpuff);
+}
+
+.hybrid {
+    .secmet(midnightblue, lightsteelblue);
+}
+
+.other {
+    .secmet(lightsteelblue, midnightblue);
+}
+
+.putative {
+    .secmet(black, #f2f2f2);
 }
