@@ -24,7 +24,10 @@
         {name: 'melanin', description: 'Melanin', count: 1},
         {name: 'siderophore', description: 'Siderophore', count: 3},
         {name: 'butyrolactone', description: 'Butyrolactone', count: 1}
-      ]
+      ];
+
+      vm.num_clusters = 25;
+      vm.num_genomes = 1;
 
     }]);
 
