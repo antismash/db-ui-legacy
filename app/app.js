@@ -5,7 +5,8 @@
     'ui.bootstrap',
     'ui.router',
     'antismash.db.ui.query',
-    'antismash.db.ui.stats'
+    'antismash.db.ui.stats',
+    'antismash.db.ui.browse'
   ]);
 
   app.config([
@@ -35,7 +36,9 @@
         }).
         state('browse', {
           url: '/browse',
-          templateUrl: 'browse/browse.html'
+          templateUrl: 'browse/browse.html',
+          controller: 'BrowseController',
+          controllerAs: '$ctrl'
         }).
         state('help', {
           url: '/help',
