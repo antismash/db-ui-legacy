@@ -3,33 +3,26 @@
 (function () {
 
   var app = angular.module('antismash.db.ui.browse', [
-
+    'antismash.db.ui.browse.secmet',
+    'antismash.db.ui.browse.taxonomy'
   ]);
 
   app.controller('BrowseController', ['$scope', '$state',
     function ($scope, $state) {
 
       var vm = this;
-      vm.sec_met_types = [
-        'NRPS',
-        'Type I PKS',
-        'Type II PKS',
-        'Type III PKS',
-        'Trans AT PKS',
-        'Other KS'
-      ]
-
     }]);
 
   app.
     component('browseSecmet', {
       templateUrl: 'browse/browse.secmet.html',
-      bindings: {
-        types: '<'
-      }
+      controller: 'BrowseSecmetController',
+      controllerAs: '$ctrl'
     }).
     component('browseTaxonomy', {
-      templateUrl: 'browse/browse.taxonomy.html'
+      templateUrl: 'browse/browse.taxonomy.html',
+      controller: 'BrowseTaxonomyController',
+      controllerAs: '$ctrl'
     });
 
 })();
