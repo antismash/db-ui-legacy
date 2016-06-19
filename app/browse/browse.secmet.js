@@ -3,12 +3,16 @@
 (function () {
 
   var app = angular.module('antismash.db.ui.browse.secmet', [
-    'jsTree.directive'
+    'jsTree.directive',
+    'antismash.db.ui.cluster'
   ]);
 
   app.controller('BrowseSecmetController', ['$scope', '$state',
     function ($scope, $state) {
       var vm = this;
+
+      vm.active = "none";
+
       $scope.activate_cb = activate_cb;
       $scope.tree_types = {
         default: {
@@ -36,6 +40,20 @@
           }
         },
         {
+          id: "lantipeptide",
+          parent: "#",
+          text: "Lanthipeptide",
+          state: {
+            disabled: true,
+          }
+        },
+        {
+          id: "nc_003888_c3",
+          parent: "lantipeptide",
+          text: "NC_003888 Cluster 3",
+          type: "cluster"
+        },
+        {
           "id": "nc_003888_c10",
           "parent": "nrps",
           "text": "NC_003888 Cluster 10",
@@ -43,8 +61,11 @@
         }
       ];
 
-      function activate_cb(event, node) {
-        console.log("clicked node ", node);
+      function activate_cb(event, ctx) {
+        // Wrap in $apply so angular notices stuff changed.
+        $scope.$apply(function(){
+          vm.active = ctx.node.id;
+        })
       }
     }]);
 
