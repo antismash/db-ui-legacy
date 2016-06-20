@@ -29,6 +29,7 @@
     "less": "^2.7.1",
     "plotly.js": "^1.13.0",
     "jsTree-directive": "jstree-directive#^0.1.5",
-    "jstree": "^3.3.1"
+    "jstree": "^3.3.1",
+    "angular-bootstrap-toggle-switch": "^0.5.6"
   }
 }

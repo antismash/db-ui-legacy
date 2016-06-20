@@ -1,55 +1,101 @@
 'use strict'
 
-angular.module('antismash.db.ui.cluster', [])
-  .controller('ClusterCtrl', function ($scope, ClusterSvc){
+angular.module('antismash.db.ui.cluster', [
+  'antismash.db.ui.cluster.description'
+])
+  .controller('ClusterCtrl', function ($scope, ClusterSvc) {
     var vm = this;
-    vm.cluster = function() {
-      return ClusterSvc.getCluster(vm.clusterId);
+    vm.cluster = function () {
+      vm.currentCluster = ClusterSvc.getCluster(vm.clusterId);
+      return vm.currentCluster;
     }
+    vm.cluster();
   })
-  .service('ClusterSvc', function(){
-    var invalidCluster = {
-      type: 'invalid',
-      id: 'invalid',
-      start: 123,
-      end: 456,
-      orfs: []
-    };
-    this.currentCluster = invalidCluster;
+  .service('ClusterSvc', function () {
+    this.currentCluster = null;
     this.getCluster = getCluster;
 
-    function getCluster(clusterId){
-      var cluster = {
-        id: clusterId
-      };
-      switch (clusterId) {
-        case 'nc_003888_c10':
-          cluster.type = 'NRPS';
-          cluster.start = 1234567;
-          cluster.end = 2345678;
-          cluster.orfs = [];
-          break;
-        case 'nc_003888_c3':
-          cluster.type = 'lantipeptide';
-          cluster.start = 123456;
-          cluster.end = 234567;
-          cluster.orfs = [];
-          break;
-        default:
-          cluster = invalidCluster;
-          break;
+    var clusters = {
+      'nc_003888_c3': {
+        id: 'nc_003888_c3',
+        description: 'NC_003888 Cluster 3',
+        type: 'lantipeptide',
+        start: 12345,
+        end: 23456,
+        orfs: [],
+        details: {
+          leader: "MEHFNLDPR",
+          core: "ASTDHCSAAAGTCGGCA",
+          class: "I",
+          score: -8.07,
+          mi_mass: 2328.1,
+          mw: 2329.6,
+          bridges: 3,
+          alt_weights: [
+            2347.6,
+            2365.6,
+            2383.7,
+            2401.7
+          ]
+        },
+        detection_rules: "lantipeptide: LanB and LanC, or LanM, or LanK"
+      },
+      'nc_003888_c10': {
+        id: 'nc_003888_c10',
+        description: 'NC_003888 Cluster 10',
+        type: 'NRPS',
+        start: 1234567,
+        end: 2345678,
+        orfs: [],
+        details: {
+          monomers: [
+            ['ser', 'thr', 'trp', 'asp', 'asp', 'hpg'],
+            ['asp', 'gly', 'asn'],
+            ['nrp', 'trp']
+          ],
+          predictions: [
+            {
+              id: 'SCO3230',
+              domains: [
+                {
+                  nrpspredictor: 'ser',
+                  stachelhaus: 'ser',
+                  minowa: 'ser',
+                  consensus: 'ser'
+                }
+              ]
+            },
+            {
+              id: 'SCO3231',
+              domains: [
+                {
+                  nrpspredictor: 'asp',
+                  stachelhaus: 'asp',
+                  minowa: 'asp',
+                  consensus: 'asp'
+                }
+              ]
+            }
+          ] //predictions
+        }, //details
+        detection_rules: "nrps: A and T and PCP"
       }
-      this.currentCluster = cluster;
-      return cluster;
+    };
+
+    function getCluster(clusterId) {
+      if (!this.currentCluster || clusterId != this.currentCluster.id) {
+        this.currentCluster = clusters[clusterId];
+      }
+      return this.currentCluster;
     }
   })
-  .directive('asCluster', function() {
+  .directive('asCluster', function () {
     return {
       scope: {},
       bindToController: {
         clusterId: "@"
       },
-      template: '<div>{{ctrl.cluster().id}}: {{ctrl.cluster().type}}</div>',
+      templateUrl: 'cluster/cluster.html',
       controller: 'ClusterCtrl',
       controllerAs: 'ctrl'
     }

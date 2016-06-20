@@ -6,7 +6,8 @@
     'ui.router',
     'antismash.db.ui.query',
     'antismash.db.ui.stats',
-    'antismash.db.ui.browse'
+    'antismash.db.ui.browse',
+    'antismash.db.ui.cluster',
   ]);
 
   app.config([
@@ -39,6 +40,15 @@
           templateUrl: 'browse/browse.html',
           controller: 'BrowseController',
           controllerAs: '$ctrl'
+        }).
+        state('show',{
+          url: '/show/:kind/:id',
+          template: '<as-cluster cluster-id="{{ctrl.id}}"></as-cluster>',
+          controller: function($stateParams){
+            this.kind = $stateParams.kind;
+            this.id = $stateParams.id;
+          },
+          controllerAs: 'ctrl'
         }).
         state('help', {
           url: '/help',

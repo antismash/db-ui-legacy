@@ -1,0 +1,22 @@
+<div class="row" ng-show="ctrl.cluster()">
+  <h3 class="cluster-header">{{ctrl.currentCluster.description}} - {{ctrl.currentCluster.type}}</h3>
+  <div class="col-md-8">
+    <as-cluster-description cluster-data="ctrl.currentCluster"></as-cluster-description>
+    <h4 class="cluster-header">Detailed annotation</h4>
+    Detailed annotation here
+    <h4 class="cluster-header">Homologous gene clusters</h4>
+    ClusterBlast output here
+    <h4 class="cluster-header">Homologous subclusters</h4>
+    SubClusterBlast here
+    <h4 class="cluster-header">Homologous known gene clusters</h4>
+    KnownClusterBlast here
+  </div>
+  <div class="col-md-4">
+    <h4 class="cluster-header">Predicted core structure</h4>
+    chemical structure
+    <h4 class="cluster-header">Prediction details</h4>
+    many details
+    <h4 class="cluster-header">Database cross-lins</h4>
+    Links to NORINE here.
+  </div>
+</div>
