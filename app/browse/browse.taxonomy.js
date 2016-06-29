@@ -9,6 +9,7 @@
   app.controller('BrowseTaxonomyController', ['$scope', '$state',
     function ($scope, $state) {
       var vm = this;
+      vm.active = null;
       $scope.activate_cb = activate_cb;
       $scope.tree_types = {
         default: {
@@ -18,65 +19,12 @@
           icon: "fa fa-circle-o"
         }
       };
-      $scope.tree = [
-        {
-          id: "bacteria",
-          parent: "#",
-          text: "Bacteria",
-          state: {
-            disabled: true
-          }
-        },
-        {
-          id: "fungi",
-          parent: "#",
-          text: "Fungi",
-          state: {
-            disabled: true
-          }
-        },
-        {
-          id: "actinobacteria",
-          parent: "bacteria",
-          text: "Actinobacteria",
-          state: {
-            disabled: true
-          }
-        },
-        {
-          id: "actinomycetales",
-          parent: "actinobacteria",
-          text: "Actinomycetales",
-          state: {
-            disabled: true
-          }
-        },
-        {
-          id: "streptomycetaceae",
-          parent: "actinomycetales",
-          text: "Streptomycetaceae",
-          state: {
-            disabled: true
-          }
-        },
-        {
-          id: "streptomyces",
-          parent: "streptomycetaceae",
-          text: "Streptomyces",
-          state: {
-            disabled: true
-          }
-        },
-        {
-          id: "streptomyces_coelicolor",
-          parent: "streptomyces",
-          text: "Steptomyces coelicolor",
-          type: "strain"
-        }
-      ];
 
-      function activate_cb(event, node) {
-        console.log("clicked node ", node);
+      function activate_cb(event, ctx) {
+        // Wrap in $apply so angular notices stuff changed.
+        $scope.$apply(function(){
+          vm.active = ctx.node.id;
+        })
       }
     }]);
 

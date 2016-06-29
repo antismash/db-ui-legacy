@@ -2,12 +2,12 @@
 <div class="row container">
   <div class="col-md-4 panel panel-default">
     <div class="panel-body">
-      <js-tree tree-plugins="wholerow,search,types" tree-data="scope" tree-model="tree" tree-events="activate_node:activate_cb" tree-types="tree_types"></js-tree>
+      <js-tree tree-plugins="wholerow,types" tree-ajax="/api/v1.0/tree/taxa" tree-events="activate_node:activate_cb" tree-types="tree_types"></js-tree>
     </div>
   </div>
   <div class="col-md-8 panel panel-default">
     <div class="panel-body">
-      Render genome info here.
+      <as-genome genome-id="{{$ctrl.active}}"></as-genome>
     </div>
   </div>
 </div>

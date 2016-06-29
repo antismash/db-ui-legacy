@@ -8,6 +8,7 @@
     'antismash.db.ui.stats',
     'antismash.db.ui.browse',
     'antismash.db.ui.cluster',
+    'antismash.db.ui.genome',
   ]);
 
   app.config([
@@ -41,11 +42,23 @@
           controller: 'BrowseController',
           controllerAs: '$ctrl'
         }).
-        state('show',{
-          url: '/show/:kind/:id',
+        state('show', {
+          url: '/show',
+          abstract: true,
+          template: '<ui-view/>'
+        }).
+        state('show.cluster',{
+          url: '/cluster/:id',
           template: '<as-cluster cluster-id="{{ctrl.id}}"></as-cluster>',
           controller: function($stateParams){
-            this.kind = $stateParams.kind;
+            this.id = $stateParams.id;
+          },
+          controllerAs: 'ctrl'
+        }).
+          state('show.genome',{
+          url: '/genome/:id',
+          template: '<as-genome genome-id="{{ctrl.id}}"></as-genome>',
+          controller: function($stateParams){
             this.id = $stateParams.id;
           },
           controllerAs: 'ctrl'
