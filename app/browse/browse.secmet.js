@@ -26,7 +26,9 @@
       function activate_cb(event, ctx) {
         // Wrap in $apply so angular notices stuff changed.
         $scope.$apply(function(){
-          vm.active = ctx.node.id;
+          var id_parts = ctx.node.id.split(/_/);
+          id_parts.pop();
+          vm.active =  id_parts.join('_').toLowerCase();
         })
       }
     }]);
