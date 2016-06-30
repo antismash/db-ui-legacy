@@ -2,20 +2,26 @@
   <h1>Query</h1>
 </div>
 
+
 <div class="row">
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor metus sed magna luctus porta a et lacus. Nam et erat
-    at lorem volutpat tempor a ac dolor. Quisque suscipit elementum dignissim. In hac habitasse platea dictumst. Fusce tempor
-    vestibulum ipsum non elementum. Aenean sollicitudin lobortis pretium. Proin eget ligula et magna luctus tristique. Suspendisse
-    vehicula sem at eros ullamcorper, nec pulvinar nulla ullamcorper. Ut purus velit, posuere nec auctor eget, venenatis
-    in velit. Aenean cursus cursus risus a accumsan. Phasellus ac ante ultricies, accumsan tortor ac, volutpat eros. Sed
-    bibendum egestas ex ac lobortis. Cras metus arcu, suscipit at nunc quis, rutrum consectetur neque. Proin feugiat lacus
-    eu augue pharetra facilisis. Aliquam dictum in libero et bibendum.
-  </p>
-  <p>
-    Vivamus placerat mollis efficitur. Phasellus sit amet scelerisque urna. Nunc condimentum nulla ac euismod pharetra. Curabitur
-    tincidunt risus libero, sit amet varius nisi molestie tincidunt. Maecenas ac felis tempor, ultrices nibh et, porta felis.
-    Nunc egestas, tellus tempor feugiat fringilla, dolor metus convallis neque, ut semper est tellus vel felis. In nec elit
-    magna.
-  </p>
+  <uib-tabset active="0"" justified="true" type="pills">
+    <uib-tab index="0" heading="Simple search">
+      <form>
+        <div class="form-group">
+          <div class="col-md-8 col-md-offset-1 search-box">
+            <label for="search-string">Enter your search term</label>
+            <input type="text" class="form-control" id="search-string" placeholder="e.g. lanthipeptide streptomyces" ng-model="ctrl.search_string">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-offset-4 col-md-4 search-button">
+            <button class="btn btn-primary btn-block" ng-click="ctrl.search()">Search</button>
+          </div>
+        </div>
+      </form>
+    </uib-tab>
+    <uib-tab index="1" heading="Build a query">
+      <div class="pattern-list"></div>
+    </uib-tab>
+  </uib-tabset>
 </div>

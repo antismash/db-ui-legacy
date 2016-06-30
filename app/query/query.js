@@ -11,6 +11,14 @@
 
       var vm = this;
 
+      vm.search_string = '';
+
+      vm.search = search;
+
+      function search() {
+        console.log("Searching for '" + vm.search_string + "'");
+      }
+
     }]);
 
 })();

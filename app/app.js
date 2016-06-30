@@ -34,7 +34,7 @@
           url: '/query',
           templateUrl: 'query/query.html',
           controller: 'QueryController',
-          controllerAs: '$ctrl'
+          controllerAs: 'ctrl'
         }).
         state('browse', {
           url: '/browse',
