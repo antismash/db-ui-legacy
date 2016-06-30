@@ -15,13 +15,34 @@
         </div>
         <div class="form-group">
           <div class="col-md-offset-4 col-md-4 search-button">
-            <button class="btn btn-primary btn-block" ng-click="ctrl.search()">Search</button>
+            <button class="btn btn-primary btn-block" ng-click="ctrl.simpleSearch()">Search</button>
+          </div>
+          <div class="col-md-offset-2 col-md-2 search-button">
+            <button class="btn btn-block" ng-click="ctrl.loadExample()">Load example</button>
           </div>
         </div>
       </form>
     </uib-tab>
     <uib-tab index="1" heading="Build a query">
-      <div class="pattern-list"></div>
+      <div class="pattern-list form-inline">
+        <div class="form-group pad-left-1" ng-repeat="entry in ctrl.search_objects">
+          <label class="control-label">Category:</label>
+          <select class="form-control" ng-options="o.desc for o in ctrl.categories track by o.val" ng-model="entry.category"></select>
+          <input class="form-control" style="width: 450px" ng-model="entry.term" placeholder="search term">
+          <button class="btn" ng-click="ctrl.removeEntry(entry)"><i class="fa fa-trash"></i></button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <button class="btn btn-primary btn-block" ng-click="ctrl.search()"><i class="fa fa-search"></i> Search</button>
+        </div>
+        <div class="col-md-2 col-md-offset-1">
+          <button class="btn btn-block" ng-click="ctrl.addEntry()"><i class="fa fa-plus"></i> Add search term</button>
+        </div>
+        <div class="col-md-2 col-md-offset-5">
+          <button class="btn btn-block" ng-click="ctrl.loadExample()"><i class="fa"></i>Load example search</button>
+        </div>
+      </div>
     </uib-tab>
   </uib-tabset>
 </div>
@@ -32,7 +53,7 @@
   </div>
 </div>
 
-<div class="row" ng-show="ctrl.results.length > 0">
+<div class="row search-box" ng-show="ctrl.results.length > 0">
   <table class="table table-striped">
     <thead>
       <tr>
@@ -46,14 +67,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="entry in ctrl.results">
+      <tr class="cluster-list" ng-repeat="entry in ctrl.results" ng-click="ctrl.showCluster(entry)">
         <td>{{entry.acc}}</td>
         <td class="cluster-type"><span class="badge" ng-class="entry.term">{{entry.cluster_number}}</span></td>
         <td>{{entry.description}}</td>
         <td class="digits">{{entry.start_pos}}</td>
         <td class="digits">{{entry.end_pos}}</td>
         <td><span ng-show="entry.cbh_description != null">{{entry.cbh_description}} ({{entry.similarity}}% of genes show similarity)</span></td>
-        <td>{{entry.cbh_acc}}</td>
+        <td><a ng-href="{{ctrl.getMibigUrl(entry.cbh_acc)}}" target="_new" ng-show="entry.cbh_acc != null" ng-click="$event.stopPropagation();">{{entry.cbh_acc}}</a></td>
       </tr>
     </tbody>
   </table>
