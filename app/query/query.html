@@ -3,14 +3,14 @@
 </div>
 
 
-<div class="row">
+<div class="row" ng-hide="ctrl.results.length > 0">
   <uib-tabset active="0"" justified="true" type="pills">
     <uib-tab index="0" heading="Simple search">
       <form>
         <div class="form-group">
           <div class="col-md-8 col-md-offset-1 search-box">
             <label for="search-string">Enter your search term</label>
-            <input type="text" class="form-control" id="search-string" placeholder="e.g. lanthipeptide streptomyces" ng-model="ctrl.search_string">
+            <input type="text" class="form-control" id="search-string" placeholder="e.g. lantipeptide streptomyces" ng-model="ctrl.search_string">
           </div>
         </div>
         <div class="form-group">
@@ -24,4 +24,37 @@
       <div class="pattern-list"></div>
     </uib-tab>
   </uib-tabset>
+</div>
+
+<div class="row" ng-show="ctrl.results.length > 0">
+  <div class="col-md-2 col-md-offset-10">
+    <button class="btn btn-block" ng-click="ctrl.results=''">New search</button>
+  </div>
+</div>
+
+<div class="row" ng-show="ctrl.results.length > 0">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Accession</th>
+        <th>Cluster</th>
+        <th>Type</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Most similar known cluster</th>
+        <th>MIBiG BGC-ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="entry in ctrl.results">
+        <td>{{entry.acc}}</td>
+        <td class="cluster-type"><span class="badge" ng-class="entry.term">{{entry.cluster_number}}</span></td>
+        <td>{{entry.description}}</td>
+        <td class="digits">{{entry.start_pos}}</td>
+        <td class="digits">{{entry.end_pos}}</td>
+        <td><span ng-show="entry.cbh_description != null">{{entry.cbh_description}} ({{entry.similarity}}% of genes show similarity)</span></td>
+        <td>{{entry.cbh_acc}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

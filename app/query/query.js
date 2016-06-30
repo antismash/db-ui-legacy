@@ -6,17 +6,22 @@
 
   ]);
 
-  app.controller('QueryController', ['$scope', '$state',
-    function ($scope, $state) {
+  app.controller('QueryController', ['$scope', '$state', '$http',
+    function ($scope, $state, $http) {
 
       var vm = this;
 
       vm.search_string = '';
-
       vm.search = search;
 
+      vm.results = [];
+
       function search() {
-        console.log("Searching for '" + vm.search_string + "'");
+        $http.post('/api/v1.0/search', {search_string: vm.search_string}).then(
+          function(results){
+            vm.results = results.data;
+          }
+        )
       }
 
     }]);
