@@ -6,6 +6,13 @@ angular.module('antismash.db.ui.cluster.description', [
   .controller('ClusterDescriptionCtrl', function ($log) {
     var vm = this;
     vm.showRules = false;
+    var cluster = {
+      start: vm.clusterData.start,
+      end: vm.clusterData.end,
+      idx: 1,
+      orfs: vm.clusterData.orfs,
+    }
+    //svgene.drawClusters('cluster-detail-svg', [cluster], 30, 800);
   })
   .directive('asClusterDescription', function () {
     return {

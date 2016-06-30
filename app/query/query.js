@@ -58,7 +58,9 @@
       };
 
       function showCluster(entry) {
-        console.log(entry);
+        var cluster_acc = entry.acc + '_c' + entry.cluster_number;
+        location.href = '/output/' + entry.acc + '/index.html#cluster-' + entry.cluster_number;
+        //$state.go('show.cluster', {id: cluster_acc});
       };
 
       function getMibigUrl(accession) {

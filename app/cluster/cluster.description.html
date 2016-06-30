@@ -3,7 +3,8 @@
 <div class="cluster-description-text">
   {{ctrl.clusterData.description}}. Type = {{ctrl.clusterData.type}}. Location: {{ctrl.clusterData.start}} - {{ctrl.clusterData.end}} nt.
 </div>
-<toggle-switch ng-model="ctrl.showRules" class="switch-mini"></toggle-switch> Show pHMM detection rules used
+<!--Show pHMM detection rules used <toggle-switch ng-model="ctrl.showRules" class="switch-mini"></toggle-switch>
 <div class="cluster-rules" ng-show="ctrl.showRules">
   {{ctrl.clusterData.detection_rules}}
-</div>
+</div>-->
+<div id="cluster-detail-svg"></div>

@@ -6,7 +6,7 @@ angular.module('antismash.db.ui.cluster', [
   .controller('ClusterCtrl', function ($scope, ClusterSvc) {
     var vm = this;
     vm.cluster = function () {
-      vm.currentCluster = ClusterSvc.getCluster(vm.clusterId);
+      vm.currentCluster = ClusterSvc.getCluster(vm.clusterId.toLowerCase());
       return vm.currentCluster;
     }
     vm.cluster();
@@ -20,8 +20,8 @@ angular.module('antismash.db.ui.cluster', [
         id: 'nc_003888_c3',
         description: 'NC_003888 Cluster 3',
         type: 'lantipeptide',
-        start: 12345,
-        end: 23456,
+        start: 245986,
+        end: 271748,
         orfs: [],
         details: {
           leader: "MEHFNLDPR",
@@ -38,7 +38,7 @@ angular.module('antismash.db.ui.cluster', [
             2401.7
           ]
         },
-        detection_rules: "lantipeptide: LanB and LanC, or LanM, or LanK"
+        detection_rules: "lantipeptide: LanB and LanC, or LanM, or also LanK"
       },
       'nc_003888_c10': {
         id: 'nc_003888_c10',

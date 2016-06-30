@@ -1,5 +1,16 @@
 @antismash-red: #810e15;
 @dark-gray: #444;
+@antismash-gray: #1d1414;
+@medium-gray: #444;
+@light-gray: #eee;
+@light-red: #aa0000;
+@tooltip-border: slategray;
+@tooltip-background: #ddd;
+// svgene genetype colors
+@gene-type-other: gray;
+@gene-type-biosynthetic: @antismash-red;
+@gene-type-regulatory: seagreen;
+@gene-type-transport: cornflowerblue;
 
 .navbar-antismash {
   border-bottom: 4px solid @antismash-red;
@@ -12,13 +23,23 @@
   }
 }
 
+.cluster-view {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
 .cluster-header{
   font-size: 90%;
   background-color: @antismash-red;
   color: white;
   margin: 0.1em 0 0.4em 0.1em;
-  padding: 0.2em 0 0.2em 0.5em;
+  padding: 0.2em 0 0.2em 1em;
   border-radius: 3px;
+}
+
+.cluster-download {
+  display: block;
+  float: right;
 }
 
 .spacer{
@@ -172,4 +193,48 @@
 
 .putative {
     .secmet(black, #f2f2f2);
+}
+
+.tooltip {
+    border: 2px solid @tooltip-border;
+    background-color: @tooltip-background;
+    display: none;
+    position: absolute;
+    font-size: 80%;
+    padding: 0.5em;
+    color: @antismash-red;
+}
+
+.svgene-type-other {
+    fill: @gene-type-other;
+    stroke: black;
+}
+.svgene-type-biosynthetic {
+    fill: @gene-type-biosynthetic;
+    stroke: black;
+}
+.svgene-type-transport {
+    fill: @gene-type-transport;
+    stroke: black;
+}
+.svgene-type-regulatory {
+    fill: @gene-type-regulatory;
+    stroke: black;
+}
+.svgene-line {
+    stroke-width: 1px;
+    stroke: #888;
+}
+.svgene-locustag {
+    fill: @antismash-red;
+    display: none;
+    font-size: 80%;
+}
+.svgene-tooltip {
+    .tooltip;
+}
+
+.svgene-tooltip-bold {
+    font-weight: bold;
+    font-size: 120%;
 }
