@@ -28,7 +28,10 @@
         $scope.$apply(function(){
           var id_parts = ctx.node.id.split(/_/);
           id_parts.pop();
-          vm.active =  id_parts.join('_').toLowerCase();
+          var cluster = id_parts.pop().replace(/c/, '');
+          var acc = id_parts.join('_');
+          var url = '/output/' + acc + '/index.html#cluster-' + cluster;
+          window.open(url, '_new');
         })
       }
     }]);

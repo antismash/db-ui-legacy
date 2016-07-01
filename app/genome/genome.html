@@ -1,7 +1,29 @@
-<div class="row" ng-hide="ctrl.genome()">
+<div class="row" ng-hide="ctrl.currentGenome">
   Please select a genome to show.
 </div>
 
-<div class="row" ng-show="ctrl.genome()">
-  Genome overview {{ctrl.currentGenome.id}} goes here
+<div class="row" ng-show="ctrl.currentGenome">
+    <table class="table table-striped" ng-show="ctrl.currentGenome.length > 0">
+    <thead>
+      <tr>
+        <th>Cluster</th>
+        <th>Type</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Most similar known cluster</th>
+        <th>MIBiG BGC-ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="cluster-list" ng-repeat="entry in ctrl.currentGenome" ng-click="ctrl.showCluster(entry)">
+        <td class="cluster-type"><span class="badge" ng-class="entry.term">{{entry.cluster_number}}</span></td>
+        <td>{{entry.description}}</td>
+        <td class="digits">{{entry.start_pos}}</td>
+        <td class="digits">{{entry.end_pos}}</td>
+        <td><span ng-show="entry.cbh_description != null">{{entry.cbh_description}} ({{entry.similarity}}% of genes show similarity)</span></td>
+        <td><a ng-href="{{ctrl.getMibigUrl(entry.cbh_acc)}}" target="_new" ng-show="entry.cbh_acc != null" ng-click="$event.stopPropagation();">{{entry.cbh_acc}}</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <div ng-show="ctrl.currentGenome.length == 0">No secondary metabolite clusters found</div>
 </div>

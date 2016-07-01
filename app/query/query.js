@@ -59,7 +59,7 @@
 
       function showCluster(entry) {
         var cluster_acc = entry.acc + '_c' + entry.cluster_number;
-        location.href = '/output/' + entry.acc + '/index.html#cluster-' + entry.cluster_number;
+        window.open('/output/' + entry.acc + '/index.html#cluster-' + entry.cluster_number, '_new');
         //$state.go('show.cluster', {id: cluster_acc});
       };
 

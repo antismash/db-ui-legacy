@@ -3,33 +3,46 @@
 angular.module('antismash.db.ui.genome', [])
   .controller('GenomeCtrl', function ($scope, GenomeSvc) {
     var vm = this;
-    vm.genome = function () {
-      vm.currentGenome = GenomeSvc.getGenome(vm.genomeId);
-      return vm.currentGenome;
-    }
-    vm.genome();
-  })
-  .service('GenomeSvc', function () {
-    this.currentGenome = null;
-    this.getGenome = getGenome;
+    vm.currentGenome = null;
+    vm.getMibigUrl = getMibigUrl;
+    vm.showCluster = showCluster;
 
-    var genomes = {
-      'nc_003888': {
-        id: 'nc_003888',
-        clusters: []
-      },
-      'nc_017486': {
-        id: 'nc_017486',
-        clusters: []
-      }
+    if (vm.genomeId){
+      GenomeSvc.getGenome(vm.genomeId).then(
+        function (result) {
+          vm.currentGenome = result.data;
+        }
+      );
+    }
+
+    $scope.$on("genomeSelected", function(event, args){
+      GenomeSvc.getGenome(args).then(function(result){
+        vm.currentGenome = result.data;
+      })
+    })
+
+    function showCluster(entry) {
+      var cluster_acc = entry.acc + '_c' + entry.cluster_number;
+      window.open('/output/' + entry.acc + '/index.html#cluster-' + entry.cluster_number, '_new');
+      //$state.go('show.cluster', {id: cluster_acc});
     };
 
-    function getGenome(genomeId) {
-      if (!this.currentGenome || genomeId != this.currentGenome.id) {
-        this.currentGenome = genomes[genomeId];
+    function getMibigUrl(accession) {
+      if (!accession) {
+        return '';
       }
-      return this.currentGenome;
-    }
+      var acc = accession.split(/_/)[0];
+      return "http://mibig.secondarymetabolites.org/repository/" + acc + "/index.html#cluster-1";
+    };
+  })
+  .factory('GenomeSvc', function ($http) {
+    var getGenome = function(genomeId) {
+      return $http.get('/api/v1.0/genome/' + genomeId);
+    };
+
+    return {
+      getGenome: getGenome
+    };
   })
   .directive('asGenome', function () {
     return {

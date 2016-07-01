@@ -24,6 +24,7 @@
         // Wrap in $apply so angular notices stuff changed.
         $scope.$apply(function(){
           vm.active = ctx.node.id;
+          $scope.$broadcast('genomeSelected', ctx.node.id);
         })
       }
     }]);
