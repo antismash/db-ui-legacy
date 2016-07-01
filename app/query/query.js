@@ -19,6 +19,9 @@
       vm.addEntry = addEntry;
       vm.removeEntry = removeEntry;
       vm.loadExample = loadExample;
+      vm.resetSearch = resetSearch;
+      vm.search_pending = false;
+      vm.search_done = false;
 
       vm.search_objects = [
         {category: {val: 'type', desc: 'BGC type'}, term: ''}
@@ -50,9 +53,12 @@
       }
 
       function simpleSearch() {
+        vm.search_pending = true;
         $http.post('/api/v1.0/search', {search_string: vm.search_string}).then(
           function(results){
             vm.results = results.data;
+            vm.search_pending = false;
+            vm.search_done = true;
           }
         )
       };
@@ -95,6 +101,12 @@
         ];
         vm.search_string = 'lantipeptide Streptomyces';
       };
+
+      function resetSearch(){
+        vm.search_done = false;
+        vm.search_pending = false;
+        vm.results = null;
+      }
 
     }]);
 
