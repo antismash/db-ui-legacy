@@ -1,5 +1,9 @@
-<div class="row" ng-hide="ctrl.currentGenome">
+<div class="row" ng-hide="ctrl.currentGenome || ctrl.pending">
   Please select a genome to show.
+</div>
+
+<div class="row" ng-show="ctrl.pending">
+   <i class="fa fa-circle-o-notch fa-spin fa-2x"></i> Retrieving data, please wait...
 </div>
 
 <div class="row" ng-show="ctrl.currentGenome">

@@ -6,17 +6,28 @@ angular.module('antismash.db.ui.genome', [])
     vm.currentGenome = null;
     vm.getMibigUrl = getMibigUrl;
     vm.showCluster = showCluster;
+    vm.pending = false;
 
     if (vm.genomeId){
+      vm.pending = true;
       GenomeSvc.getGenome(vm.genomeId).then(
         function (result) {
+          vm.pending = false;
           vm.currentGenome = result.data;
         }
       );
     }
 
     $scope.$on("genomeSelected", function(event, args){
+      if (vm.currentGenome &&
+          vm.currentGenome.length > 0 &&
+          vm.currentGenome[0].acc.toLowerCase() == args.toLowerCase()){
+        return;
+      }
+      vm.pending = true;
+      vm.currentGenome = null;
       GenomeSvc.getGenome(args).then(function(result){
+        vm.pending = false;
         vm.currentGenome = result.data;
       })
     })
