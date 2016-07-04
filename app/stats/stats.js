@@ -11,8 +11,10 @@
 
       var vm = this;
       $http.get('/api/v1.0/stats').then(function(response){
-        vm.num_clusters = response.data.num_clusters;
-        vm.num_genomes = response.data.num_genomes;
+        vm.general_stats = [
+          {'name': 'Secondary Metabolite Clusters', 'value': response.data.num_clusters},
+          {'name': 'Genomes', 'value': response.data.num_genomes}
+        ];
         vm.sec_met_clusters = response.data.clusters;
       })
     }]);
