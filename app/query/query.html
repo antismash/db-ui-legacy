@@ -1,4 +1,4 @@
-<div class="container">
+<div class="wide-container">
 <div class="page-header">
   <h1>Query</h1>
 </div>
@@ -58,6 +58,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
+        <th>Species</th>
         <th>Accession</th>
         <th>Cluster</th>
         <th>Type</th>
@@ -69,6 +70,7 @@
     </thead>
     <tbody>
       <tr class="cluster-list" ng-repeat="entry in ctrl.results" ng-click="ctrl.showCluster(entry)">
+        <td>{{entry.species}}</td>
         <td>{{entry.acc}}</td>
         <td class="cluster-type"><span class="badge" ng-class="entry.term">{{entry.cluster_number}}</span></td>
         <td>{{entry.description}}</td>
