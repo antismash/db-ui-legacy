@@ -15,6 +15,8 @@
       vm.search = search;
       vm.simpleSearch = simpleSearch;
       vm.showCluster = showCluster;
+      vm.canLoadMore = canLoadMore;
+      vm.loadMore = loadMore;
       vm.getMibigUrl = getMibigUrl;
       vm.addEntry = addEntry;
       vm.removeEntry = removeEntry;
@@ -37,7 +39,7 @@
         {val: 'family', desc: 'Family'}
       ]
 
-      vm.results = [];
+      vm.results = {};
 
       function search() {
         var compiled_search = [];
@@ -62,6 +64,30 @@
           }
         )
       };
+
+      function canLoadMore() {
+        if (vm.results && vm.results.clusters) {
+          return vm.results.clusters.length < vm.results.total;
+        }
+        return false;
+      }
+
+      function loadMore() {
+        var next_offset = vm.results.offset + vm.results.paginate;
+        var search_obj = {
+          search_string: vm.search_string,
+          offset: next_offset
+        };
+        $http.post('/api/v1.0/search', search_obj).then(
+          function(results){
+            var new_clusters = results.data.clusters;
+            for (var i = 0; i < new_clusters.length; i++) {
+              vm.results.clusters.push(new_clusters[i]);
+            }
+            vm.results.offset = results.data.offset;
+          }
+        )
+      }
 
       function showCluster(entry) {
         var cluster_acc = entry.acc + '_c' + entry.cluster_number;
@@ -105,7 +131,7 @@
       function resetSearch(){
         vm.search_done = false;
         vm.search_pending = false;
-        vm.results = null;
+        vm.results = {};
       }
 
     }]);

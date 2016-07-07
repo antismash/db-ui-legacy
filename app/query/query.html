@@ -55,7 +55,8 @@
 </div>
 
 <div class="row query-results-count" ng-show="ctrl.results.clusters.length > 0">
-Your search gave {{ctrl.results.clusters.length}} result<span ng-hide="ctrl.results.clusters.length == 1">s</span>
+Your search gave <strong>{{ctrl.results.total}}</strong> result<span ng-hide="ctrl.results.clusters.length == 1">s</span> in total.
+Showing <strong>1</strong> to <strong>{{ctrl.results.clusters.length}}</strong>
 </div>
 
 <div class="row search-box" ng-show="ctrl.results.clusters.length > 0">
@@ -86,6 +87,11 @@ Your search gave {{ctrl.results.clusters.length}} result<span ng-hide="ctrl.resu
     </tbody>
   </table>
 </div>
+
+<div class="row" ng-show="ctrl.canLoadMore()">
+  <button class="btn btn-primary" ng-click="ctrl.loadMore()">Load more results</button>
+</div>
+
 
 <div class="row" ng-show="ctrl.search_done && ctrl.results.clusters.length == 0">
   Your search gave no results. Please change your search terms and try again.
