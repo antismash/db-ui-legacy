@@ -10,6 +10,20 @@
     function ($scope, $state, $http) {
 
       var vm = this;
+      vm.general_stats = [
+        { 'name': 'Secondary metabolite clusters', 'value': '?' },
+        { 'name': 'Species with most secondary metabolite clusters', 'value': '?' },
+        { 'name': 'NCBI taxon with most clusters', 'value': '?' },
+        { 'name': 'Clusters in top taxon', 'value': '?' },
+        { 'name': 'Genomes', 'value': '?' },
+        { 'name': 'Sequences', 'value': '?' },
+        { 'name': 'NCBI taxon with most sequences', 'value': '?' },
+        { 'name': 'Sequences in top taxon', 'value': '?' },
+
+      ];
+      vm.sec_met_clusters = [];
+
+
       $http.get('/api/v1.0/stats').then(function(response){
         vm.general_stats = [
           {'name': 'Secondary metabolite clusters', 'value': response.data.num_clusters},
