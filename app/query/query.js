@@ -24,6 +24,7 @@
       vm.resetSearch = resetSearch;
       vm.search_pending = false;
       vm.search_done = false;
+      vm.loading_more = false;
 
       vm.search_objects = [
         {category: {val: 'type', desc: 'BGC type'}, term: ''}
@@ -78,8 +79,10 @@
           search_string: vm.search_string,
           offset: next_offset
         };
+        vm.loading_more = true;
         $http.post('/api/v1.0/search', search_obj).then(
           function(results){
+            vm.loading_more = false;
             var new_clusters = results.data.clusters;
             for (var i = 0; i < new_clusters.length; i++) {
               vm.results.clusters.push(new_clusters[i]);

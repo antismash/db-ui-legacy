@@ -88,10 +88,9 @@ Showing <strong>1</strong> to <strong>{{ctrl.results.clusters.length}}</strong>
   </table>
 </div>
 
-<div class="row" ng-show="ctrl.canLoadMore()">
+<div class="row" ng-show="ctrl.canLoadMore() && !ctrl.loading_more">
   <button class="btn btn-primary" ng-click="ctrl.loadMore()">Load more results</button>
 </div>
-
 
 <div class="row" ng-show="ctrl.search_done && ctrl.results.clusters.length == 0">
   Your search gave no results. Please change your search terms and try again.
@@ -99,6 +98,10 @@ Showing <strong>1</strong> to <strong>{{ctrl.results.clusters.length}}</strong>
 
 <div class="row" ng-show="ctrl.search_pending">
   <i class="fa fa-circle-o-notch fa-spin fa-2x"></i> Searching, please wait...
+</div>
+
+<div class="row" ng-show="ctrl.loading_more">
+  <i class="fa fa-circle-o-notch fa-spin fa-2x"></i> Loading more results, please wait...
 </div>
 
 </div>
