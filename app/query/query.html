@@ -54,7 +54,11 @@
   </div>
 </div>
 
-<div class="row search-box" ng-show="ctrl.results.length > 0">
+<div class="row query-results-count" ng-show="ctrl.results.clusters.length > 0">
+Your search gave {{ctrl.results.clusters.length}} result<span ng-hide="ctrl.results.clusters.length == 1">s</span>
+</div>
+
+<div class="row search-box" ng-show="ctrl.results.clusters.length > 0">
   <table class="table table-striped">
     <thead>
       <tr>
@@ -69,7 +73,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="cluster-list" ng-repeat="entry in ctrl.results" ng-click="ctrl.showCluster(entry)">
+      <tr class="cluster-list" ng-repeat="entry in ctrl.results.clusters" ng-click="ctrl.showCluster(entry)">
         <td>{{entry.species}}</td>
         <td>{{entry.acc}}</td>
         <td class="cluster-type"><span class="badge" ng-class="entry.term">{{entry.cluster_number}}</span></td>
@@ -83,7 +87,7 @@
   </table>
 </div>
 
-<div class="row" ng-show="ctrl.search_done && ctrl.results.length == 0">
+<div class="row" ng-show="ctrl.search_done && ctrl.results.clusters.length == 0">
   Your search gave no results. Please change your search terms and try again.
 </div>
 
