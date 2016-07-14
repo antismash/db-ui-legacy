@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "lite-server app"
+    "start": "gulp server"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,11 @@
   },
   "homepage": "https://github.com/antismash/antismash-db-ui#readme",
   "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-less": "^3.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.4",
     "http-proxy-middleware": "^0.16.0",
     "lite-server": "^2.2.0"
   }

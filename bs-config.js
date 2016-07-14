@@ -2,9 +2,9 @@ var proxyMiddleware = require('http-proxy-middleware');
 
 module.exports = {
   port: 3000,
-  files: ["./app/**/*.{html,css,js,less}"],
+  files: ["./dist/**/*.{html,css,js,less}"],
   server: {
-    baseDir: './app',
+    baseDir: './dist',
     middleware: {
       1: proxyMiddleware('/api', {
         target: 'http://localhost:5566',
