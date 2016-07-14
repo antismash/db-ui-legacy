@@ -37,7 +37,11 @@
         {val: 'compound_seq', desc: 'Compound sequence'},
         {val: 'species', desc: 'Species'},
         {val: 'genus', desc: 'Genus'},
-        {val: 'family', desc: 'Family'}
+        {val: 'family', desc: 'Family'},
+        {val: 'order', desc: 'Order'},
+        {val: 'class', desc: 'Class'},
+        {val: 'phylum', desc: 'Phylum'},
+        {val: 'superkingdom', desc: 'Superkingdom'}
       ]
 
       vm.results = {};
