@@ -12,7 +12,7 @@
       var vm = this;
       vm.general_stats = [
         { 'name': 'Secondary metabolite clusters', 'value': '?' },
-        { 'name': 'Species with most secondary metabolite clusters', 'value': '?' },
+        { 'name': 'Most secondary metabolite clusters', 'value': '?' },
         { 'name': 'NCBI taxon with most clusters', 'value': '?' },
         { 'name': 'Clusters in top taxon', 'value': '?' },
         { 'name': 'Genomes', 'value': '?' },
@@ -27,7 +27,7 @@
       $http.get('/api/v1.0/stats').then(function(response){
         vm.general_stats = [
           {'name': 'Secondary metabolite clusters', 'value': response.data.num_clusters},
-          {'name': 'Species with most secondary metabolite clusters', 'value': response.data.top_secmet_species},
+          {'name': 'Most secondary metabolite clusters', 'value': response.data.top_secmet_species},
           {'name': 'NCBI taxon with most clusters', 'value': response.data.top_secmet_taxon},
           {'name': 'Clusters in top taxon', 'value': response.data.top_secmet_taxon_count},
           {'name': 'Genomes', 'value': response.data.num_genomes},
