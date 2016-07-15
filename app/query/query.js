@@ -17,6 +17,7 @@
       vm.showCluster = showCluster;
       vm.canLoadMore = canLoadMore;
       vm.loadMore = loadMore;
+      vm.getNcbiUrl = getNcbiUrl;
       vm.getMibigUrl = getMibigUrl;
       vm.addEntry = addEntry;
       vm.removeEntry = removeEntry;
@@ -100,6 +101,13 @@
         var cluster_acc = entry.acc + '_c' + entry.cluster_number;
         window.open('/output/' + entry.acc + '/index.html#cluster-' + entry.cluster_number, '_new');
       };
+
+      function getNcbiUrl(accession) {
+        if (!accession){
+          return '';
+        }
+        return "http://www.ncbi.nlm.nih.gov/genome/?term=" + accession;
+      }
 
       function getMibigUrl(accession) {
         if (!accession) {
