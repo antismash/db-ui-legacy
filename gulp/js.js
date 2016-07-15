@@ -11,5 +11,5 @@ gulp.task('js', function () {
 });
 
 gulp.task('js:watch', ['js'], function() {
-  gulp.watch(sources);
+  gulp.watch(sources, ['js']);
 });
