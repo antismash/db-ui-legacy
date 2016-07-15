@@ -122,29 +122,69 @@
   padding-left: 1em;
 }
 
+
 .secmet (@fg: black, @bg: white) {
     background-color: @bg;
     color: @fg;
+    a {
+        color: @fg;
+    }
 }
 
-.t1pks {
-    .secmet(purple, orange);
-}
-
-.t2pks {
+.pks {
     .secmet(purple, sandybrown);
 }
 
-.t3pks {
-    .secmet(purple, lightsalmon);
+.pigment {
+    .secmet(white, sienna);
 }
 
-.otherks {
-    .secmet(purple, goldenrod);
+.hydrocarbon {
+    .secmet(white, purple);
+}
+
+.ripp {
+    .secmet(white, royalblue);
+}
+
+.putative {
+    .secmet(black, #f2f2f2);
+}
+
+.t1pks {
+    .pks;
 }
 
 .transatpks {
-    .secmet(maroon, chocolate);
+    .pks;
+}
+
+.t2pks {
+    .pks;
+}
+
+.t3pks {
+    .pks;
+}
+
+.otherks {
+    .pks;
+}
+
+.arylpolyene {
+    .pigment;
+}
+
+.resorcinol {
+    .hydrocarbon;
+}
+
+.ladderane {
+    .hydrocarbon;
+}
+
+.pufa {
+    .hydrocarbon;
 }
 
 .nrps {
@@ -152,7 +192,7 @@
 }
 
 .terpene {
-    .secmet(white, purple);
+    .hydrocarbon;
 }
 
 .lantibiotic {
@@ -164,39 +204,103 @@
 }
 
 .bacteriocin {
-    .secmet(white, royalblue);
-}
-
-.lassopeptide {
-  .bacteriocin
+    .ripp;
 }
 
 .thiopeptide {
-  .bacteriocin
+    .secmet(black, gold);
+}
+
+.linaridin {
+    .ripp;
 }
 
 .cyanobactin {
-  .bacteriocin
+    .ripp;
+}
+
+.glycocin {
+    .ripp;
+}
+
+.lap {
+    .ripp;
+}
+
+.lassopeptide {
+    .ripp;
+}
+
+.sactipeptide {
+    .ripp;
+}
+
+.bottromycin {
+    .ripp;
 }
 
 .head_to_tail {
-  .bacteriocin
+    .ripp;
 }
 
-.ectoine {
-    .secmet(firebrick, yellowgreen);
+.microcin {
+    .ripp;
 }
 
-.melanin {
-    .secmet(white, sienna);
+.microviridin {
+    .ripp;
+}
+
+.proteusin {
+    .ripp;
+}
+
+.blactam {
+    .secmet(black, aliceblue);
+}
+
+.amglyccycl {
+    .secmet(black, yellowgreen);
+}
+
+.amimocoumarin {
+    .secmet(black, yellowgreen);
 }
 
 .siderophore {
     .secmet(white, crimson);
 }
 
+.ectoine {
+    .secmet(firebrick, yellowgreen);
+}
+
 .butyrolactone {
     .secmet(white, mediumpurple);
+}
+
+.indole {
+    .secmet(black, peachpuff);
+}
+
+.nucleoside {
+    .secmet(black, antiquewhite);
+}
+
+.phosphoglycolipid {
+    .secmet(black, yellowgreen);
+}
+
+.melanin {
+    .pigment;
+}
+
+.oligosaccharide {
+    .secmet(black, burlywood);
+}
+
+.furan {
+    .hydrocarbon;
 }
 
 .hserlactone{
@@ -207,36 +311,28 @@
     .secmet(black, plum);
 }
 
-.amglyccycl {
-    .secmet(black, yellowgreen);
-}
-
-.blactam {
-    .secmet(black, aliceblue);
-}
-
-.nucleoside {
-    .secmet(black, antiquewhite);
-}
-
 .phosphonate {
-    .secmet(black, mintcream);
+    .secmet(black, mediumaquamarine);
 }
 
-.indole {
-    .secmet(black, peachpuff);
-}
-
-.hybrid {
-    .secmet(midnightblue, lightsteelblue);
+.fused {
+    .ripp;
 }
 
 .other {
     .secmet(lightsteelblue, midnightblue);
 }
 
-.putative {
-    .secmet(black, #f2f2f2);
+.cf_saccharide {
+    .putative;
+}
+
+.cf_fatty_acid {
+    .putative;
+}
+
+.hybrid {
+    .secmet(midnightblue, lightsteelblue);
 }
 
 .tooltip {
