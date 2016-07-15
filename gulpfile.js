@@ -9,4 +9,6 @@ fs.readdirSync(__dirname + '/gulp').forEach(function (module) {
 })
 
 gulp.task('build', ['vendor', 'js', 'html', 'less', 'css', 'static']);
-gulp.task('default', ['vendor', 'js:watch', 'html:watch', 'less:watch', 'server']);
+gulp.task('watch', ['html:watch', 'js:watch', 'less:watch']);
+
+gulp.task('default', ['server']);
