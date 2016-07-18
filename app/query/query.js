@@ -6,8 +6,8 @@
 
   ]);
 
-  app.controller('QueryController', ['$scope', '$state', '$http',
-    function ($scope, $state, $http) {
+  app.controller('QueryController', ['$http',
+    function ($http) {
 
       var vm = this;
 
