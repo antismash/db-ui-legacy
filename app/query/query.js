@@ -6,8 +6,8 @@
 
   ]);
 
-  app.controller('QueryController', ['$http',
-    function ($http) {
+  app.controller('QueryController', ['$http', '$window',
+    function ($http, $window) {
 
       var vm = this;
 
@@ -99,7 +99,7 @@
 
       function showCluster(entry) {
         var cluster_acc = entry.acc + '_c' + entry.cluster_number;
-        window.open('/output/' + entry.acc + '/index.html#cluster-' + entry.cluster_number, '_new');
+        $window.open('/output/' + entry.acc + '/index.html#cluster-' + entry.cluster_number, '_new');
       };
 
       function getNcbiUrl(accession) {
