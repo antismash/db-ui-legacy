@@ -6,8 +6,8 @@
 
   ]);
 
-  app.controller('StatsController', ['$scope', '$state', '$http',
-    function ($scope, $state, $http) {
+  app.controller('StatsController', ['$http',
+    function ($http) {
 
       var vm = this;
       vm.general_stats = [
