@@ -3,12 +3,11 @@
 (function () {
 
   var app = angular.module('antismash.db.ui.browse.secmet', [
-    'jsTree.directive',
-    'antismash.db.ui.cluster'
+    'jsTree.directive'
   ]);
 
-  app.controller('BrowseSecmetController', ['$scope', '$state',
-    function ($scope, $state) {
+  app.controller('BrowseSecmetController', ['$scope', '$window',
+    function ($scope, $window) {
       var vm = this;
 
       vm.active = "none";
@@ -31,7 +30,7 @@
           var cluster = id_parts.pop().replace(/c/, '');
           var acc = id_parts.join('_');
           var url = '/output/' + acc + '/index.html#cluster-' + cluster;
-          window.open(url, '_new');
+          $window.open(url, '_new');
         })
       }
     }]);
