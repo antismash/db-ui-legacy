@@ -38,7 +38,7 @@ angular.module('antismash.db.ui.routing', [
       }).
       state('show.genome', {
         url: '/genome/:id',
-        template: '<as-genome genome-id="{{ctrl.id}}"></as-genome>',
+        template: '<div class="wide-container"><as-genome genome-id="{{ctrl.id}}"></as-genome></div>',
         controller: function ($stateParams) {
           this.id = $stateParams.id;
         },
