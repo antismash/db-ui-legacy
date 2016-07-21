@@ -10,13 +10,7 @@ angular.module('antismash.db.ui.genome', [])
     vm.pending = false;
 
     if (vm.genomeId){
-      vm.pending = true;
-      GenomeSvc.getGenome(vm.genomeId).then(
-        function (result) {
-          vm.pending = false;
-          vm.currentGenome = result.data;
-        }
-      );
+      loadGenome(vm.genomeId);
     }
 
     $scope.$on("genomeSelected", function(event, args){
@@ -25,12 +19,7 @@ angular.module('antismash.db.ui.genome', [])
           vm.currentGenome[0].acc.toLowerCase() == args.toLowerCase()){
         return;
       }
-      vm.pending = true;
-      vm.currentGenome = null;
-      GenomeSvc.getGenome(args).then(function(result){
-        vm.pending = false;
-        vm.currentGenome = result.data;
-      })
+      loadGenome(args);
     })
 
     function showCluster(entry) {
@@ -44,6 +33,16 @@ angular.module('antismash.db.ui.genome', [])
       }
       var acc = accession.split(/_/)[0];
       return "http://mibig.secondarymetabolites.org/repository/" + acc + "/index.html#cluster-1";
+    };
+
+    function loadGenome(genome_id) {
+      vm.pending = true;
+      GenomeSvc.getGenome(genome_id).then(
+        function (result) {
+          vm.pending = false;
+          vm.currentGenome = result.data;
+        }
+      );
     };
   }])
   .factory('GenomeSvc', function ($http) {
