@@ -7,12 +7,6 @@
     'antismash.db.ui.browse.taxonomy'
   ]);
 
-  app.controller('BrowseController', ['$scope', '$state',
-    function ($scope, $state) {
-
-      var vm = this;
-    }]);
-
   app.
     component('browseSecmet', {
       templateUrl: 'browse/browse.secmet.html',

@@ -30,9 +30,7 @@ angular.module('antismash.db.ui.routing', [
       }).
       state('browse', {
         url: '/browse',
-        templateUrl: 'browse/browse.html',
-        controller: 'BrowseController',
-        controllerAs: '$ctrl'
+        templateUrl: 'browse/browse.html'
       }).
       state('show', {
         url: '/show',
