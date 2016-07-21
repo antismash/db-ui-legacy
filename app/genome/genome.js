@@ -7,6 +7,7 @@ angular.module('antismash.db.ui.genome', [])
     vm.currentGenome = null;
     vm.getMibigUrl = getMibigUrl;
     vm.showCluster = showCluster;
+    vm.loadGenome = loadGenome;
     vm.pending = false;
 
     if (vm.genomeId){
