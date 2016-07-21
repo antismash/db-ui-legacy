@@ -3,7 +3,6 @@ angular.module('antismash.db.ui.routing', [
   'antismash.db.ui.query',
   'antismash.db.ui.stats',
   'antismash.db.ui.browse',
-  'antismash.db.ui.cluster',
   'antismash.db.ui.genome',
 ]).config([
   '$stateProvider',
@@ -36,14 +35,6 @@ angular.module('antismash.db.ui.routing', [
         url: '/show',
         abstract: true,
         template: '<ui-view/>'
-      }).
-      state('show.cluster', {
-        url: '/cluster/:id',
-        template: '<as-cluster cluster-id="{{ctrl.id}}"></as-cluster>',
-        controller: function ($stateParams) {
-          this.id = $stateParams.id;
-        },
-        controllerAs: 'ctrl'
       }).
       state('show.genome', {
         url: '/genome/:id',
