@@ -6,8 +6,8 @@
     'jsTree.directive'
   ]);
 
-  app.controller('BrowseTaxonomyController', ['$scope', '$state',
-    function ($scope, $state) {
+  app.controller('BrowseTaxonomyController', ['$scope',
+    function ($scope) {
       var vm = this;
       vm.active = null;
       $scope.activate_cb = activate_cb;
