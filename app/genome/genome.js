@@ -1,7 +1,8 @@
 'use strict'
 
 angular.module('antismash.db.ui.genome', [])
-  .controller('GenomeCtrl', function ($scope, GenomeSvc) {
+  .controller('GenomeCtrl', ['$scope', 'GenomeSvc',
+    function ($scope, GenomeSvc) {
     var vm = this;
     vm.currentGenome = null;
     vm.getMibigUrl = getMibigUrl;
@@ -44,7 +45,7 @@ angular.module('antismash.db.ui.genome', [])
       var acc = accession.split(/_/)[0];
       return "http://mibig.secondarymetabolites.org/repository/" + acc + "/index.html#cluster-1";
     };
-  })
+  }])
   .factory('GenomeSvc', function ($http) {
     var getGenome = function(genomeId) {
       return $http.get('/api/v1.0/genome/' + genomeId);
