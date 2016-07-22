@@ -175,5 +175,28 @@ describe('GenomeSvc', function () {
 
 /* Directive */
 describe('asGenome', function () {
-  it('should be defined');
+  var $httpBackend;
+  var $scope;
+  var element;
+
+  beforeEach(function () {
+    module('antismash.db.ui.genome');
+    inject(function ($rootScope, $compile, _$httpBackend_) {
+      $scope = $rootScope.$new();
+      $httpBackend = _$httpBackend_;
+      $httpBackend.expectGET('genome/genome.html').respond('<div>asGenome loaded</div>');
+      element = $compile('<as-genome></as-genome>')($scope);
+      $scope.$digest();
+      $httpBackend.flush();
+    })
+  });
+
+  afterEach(function () {
+    $httpBackend.verifyNoOutstandingExpectation();
+    $httpBackend.verifyNoOutstandingRequest();
+  })
+
+  it('should load the template', function () {
+    expect(element.text()).toEqual('asGenome loaded');
+  });
 });
