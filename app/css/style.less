@@ -122,6 +122,19 @@
   padding-left: 1em;
 }
 
+.jstree-container {
+  overflow-y: auto;
+  @media (min-height: 500px) {
+    max-height: 200px;
+  }
+  @media (min-height: 750px) {
+    max-height: 450px;
+  }
+  @media (min-height: 1000px) {
+    max-height: 750px;
+  }
+}
+
 
 .secmet (@fg: black, @bg: white) {
     background-color: @bg;
