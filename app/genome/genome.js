@@ -38,6 +38,7 @@ angular.module('antismash.db.ui.genome', [])
 
     function loadGenome(genome_id) {
       vm.pending = true;
+      vm.currentGenome = null;
       GenomeSvc.getGenome(genome_id).then(
         function (result) {
           vm.pending = false;

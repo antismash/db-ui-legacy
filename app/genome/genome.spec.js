@@ -96,9 +96,25 @@ describe('GenomeCtrl', function () {
       expect(ctrl.pending).toBe(true);
 
       // Now resolve the promise, pending is false again
-      deferred.resolve(data);
+      deferred.resolve({data: data});
       $scope.$apply();
       expect(ctrl.pending).toBe(false);
+    });
+
+    it('should clear the old genome when called', function () {
+      var deferred = $q.defer();
+      spyOn(GenomeSvc, 'getGenome').and.returnValue(deferred.promise);
+      ctrl = getController();
+      ctrl.currentGenome = data;
+
+       // While waiting for the promise to resolve, currentGenome should be deleted already
+      ctrl.loadGenome('fake1234');
+      expect(ctrl.currentGenome).toEqual(null);
+
+      // Now resolve the promise, currentGenome should be filled again
+      deferred.resolve({data: data});
+      $scope.$digest();
+      expect(ctrl.currentGenome).toEqual(data);
     });
   });
 
