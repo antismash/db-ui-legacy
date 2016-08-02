@@ -65,7 +65,7 @@
     Your search gave <strong>{{ctrl.results.total}}</strong> result<span ng-hide="ctrl.results.clusters.length == 1">s</span>    in total. Showing <strong>1</strong> to <strong>{{ctrl.results.clusters.length}}</strong>
   </div>
   <div class="col-md-2">
-    <button class="btn btn-block btn-primary"><i class="fa fa-download"></i> Download results</button>
+    <button class="btn btn-block btn-primary" ng-click="ctrl.downloadCsv()"><i class="fa fa-download"></i> Download results</button>
   </div>
 </div>
 

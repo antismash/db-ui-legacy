@@ -2,12 +2,35 @@
 
 (function () {
 
-  var app = angular.module('antismash.db.ui.query', [
+  var app = angular.module('antismash.db.ui.query', ['ngResource']);
 
-  ]);
+  app.factory('Csv', ['$resource', function ($resource) {
+    return $resource('/api/v1.0/export', null, {
+      csv: {
+        method: 'POST',
+        headers: {
+          accept: 'text/csv'
+        },
+        responseType: 'arraybuffer',
+        cache: true,
+        transformResponse: function (data) {
+          console.log(data);
+          var csv;
+          if (data) {
+            csv = new Blob([data], {
+              type: 'text/csv'
+            });
+          }
+          return {
+            response: csv
+          };
+        }
+      }
+    });
+  }]);
 
-  app.controller('QueryController', ['$http', '$window',
-    function ($http, $window) {
+  app.controller('QueryController', ['$http', '$window', 'Csv',
+    function ($http, $window, Csv) {
 
       var vm = this;
 
@@ -23,6 +46,7 @@
       vm.removeEntry = removeEntry;
       vm.loadExample = loadExample;
       vm.resetSearch = resetSearch;
+      vm.downloadCsv = downloadCsv;
       vm.search_pending = false;
       vm.search_done = false;
       vm.loading_more = false;
@@ -146,7 +170,15 @@
         vm.search_done = false;
         vm.search_pending = false;
         vm.results = {};
-      }
+      };
+
+      function downloadCsv(){
+        console.log("clicked");
+        return Csv.csv(null, {search_string: vm.search_string}).$promise.then(function (data) {
+          var blob = data.response;
+          $window.saveAs(blob, 'asdb_search_results.cvs');
+        });
+      };
 
     }]);
 
