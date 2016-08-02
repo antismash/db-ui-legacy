@@ -25,12 +25,18 @@
       </form>
     </uib-tab>
     <uib-tab index="1" heading="Build a query">
-      <div class="pattern-list form-inline">
-        <div class="form-group pad-left-1" ng-repeat="entry in ctrl.search_objects">
-          <label class="control-label">Category:</label>
-          <select class="form-control" ng-options="o.desc for o in ctrl.categories track by o.val" ng-model="entry.category"></select>
-          <input class="form-control" style="width: 450px" ng-model="entry.term" placeholder="search term">
-          <button class="btn" ng-click="ctrl.removeEntry(entry)"><i class="fa fa-trash"></i></button>
+      <div class="pattern-list form-horizontal">
+        <div class="form-group pad-left-1 row" ng-repeat="entry in ctrl.search_objects">
+          <label class="control-label col-sm-2">Category:</label>
+          <div class="col-sm-2">
+            <select class="form-control" ng-options="o.desc for o in ctrl.categories track by o.val" ng-model="entry.category"></select>
+          </div>
+          <div class="col-sm-6">
+            <input class="form-control" ng-model="entry.term" placeholder="search term">
+          </div>
+          <div class="col-sm-1">
+            <button class="btn" ng-click="ctrl.removeEntry(entry)"><i class="fa fa-trash"></i></button>
+          </div>
         </div>
       </div>
       <div class="row">
