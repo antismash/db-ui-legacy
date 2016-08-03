@@ -44,6 +44,10 @@ angular.module('antismash.db.ui.routing', [
         },
         controllerAs: 'ctrl'
       }).
+      state('about', {
+        url: '/about',
+        templateUrl: 'about/about.html'
+      }).
       state('help', {
         url: '/help',
         templateUrl: 'help/help.html'
