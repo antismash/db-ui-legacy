@@ -1,16 +1,16 @@
 /*!
- * Bootstrap v3.3.5 (http://getbootstrap.com)
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
 /*!
- * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=2cb9e9ffbdae66a60bd419d811cf73bb)
- * Config saved to config.json and https://gist.github.com/2cb9e9ffbdae66a60bd419d811cf73bb
+ * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=b71df833a6d85ba848f52dcedc926537)
+ * Config saved to config.json and https://gist.github.com/b71df833a6d85ba848f52dcedc926537
  */
 /*!
- * Bootstrap v3.3.6 (http://getbootstrap.com)
- * Copyright 2011-2015 Twitter, Inc.
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 .btn-default,
@@ -72,26 +72,26 @@ fieldset[disabled] .btn-danger {
   background-image: none;
 }
 .btn-default {
-  background-image: -webkit-linear-gradient(top, #444444 0%, #252525 100%);
-  background-image: -o-linear-gradient(top, #444444 0%, #252525 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#444444), to(#252525));
-  background-image: linear-gradient(to bottom, #444444 0%, #252525 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff444444', endColorstr='#ff252525', GradientType=0);
+  background-image: -webkit-linear-gradient(top, #dddddd 0%, #bebebe 100%);
+  background-image: -o-linear-gradient(top, #dddddd 0%, #bebebe 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#dddddd), to(#bebebe));
+  background-image: linear-gradient(to bottom, #dddddd 0%, #bebebe 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffdddddd', endColorstr='#ffbebebe', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   background-repeat: repeat-x;
-  border-color: #202020;
+  border-color: #b9b9b9;
   text-shadow: 0 1px 0 #fff;
   border-color: #ccc;
 }
 .btn-default:hover,
 .btn-default:focus {
-  background-color: #252525;
+  background-color: #bebebe;
   background-position: 0 -15px;
 }
 .btn-default:active,
 .btn-default.active {
-  background-color: #252525;
-  border-color: #202020;
+  background-color: #bebebe;
+  border-color: #b9b9b9;
 }
 .btn-default.disabled,
 .btn-default[disabled],
@@ -111,7 +111,7 @@ fieldset[disabled] .btn-default:active,
 .btn-default.disabled.active,
 .btn-default[disabled].active,
 fieldset[disabled] .btn-default.active {
-  background-color: #252525;
+  background-color: #bebebe;
   background-image: none;
 }
 .btn-primary {

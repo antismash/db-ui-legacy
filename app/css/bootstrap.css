@@ -1,16 +1,16 @@
 /*!
- * Bootstrap v3.3.5 (http://getbootstrap.com)
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
 /*!
- * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=2cb9e9ffbdae66a60bd419d811cf73bb)
- * Config saved to config.json and https://gist.github.com/2cb9e9ffbdae66a60bd419d811cf73bb
+ * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=b71df833a6d85ba848f52dcedc926537)
+ * Config saved to config.json and https://gist.github.com/b71df833a6d85ba848f52dcedc926537
  */
 /*!
- * Bootstrap v3.3.6 (http://getbootstrap.com)
- * Copyright 2011-2015 Twitter, Inc.
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
@@ -1112,7 +1112,6 @@ a:focus {
   text-decoration: underline;
 }
 a:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -2543,7 +2542,6 @@ select[size] {
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -3035,14 +3033,13 @@ select[multiple].input-lg {
 .btn.focus,
 .btn:active.focus,
 .btn.active.focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
 .btn:hover,
 .btn:focus,
 .btn.focus {
-  color: #333333;
+  color: #444444;
   text-decoration: none;
 }
 .btn:active,
@@ -3066,27 +3063,27 @@ fieldset[disabled] a.btn {
   pointer-events: none;
 }
 .btn-default {
-  color: #333333;
-  background-color: #444444;
-  border-color: #cccccc;
+  color: #444444;
+  background-color: #dddddd;
+  border-color: #d0d0d0;
 }
 .btn-default:focus,
 .btn-default.focus {
-  color: #333333;
-  background-color: #2b2b2b;
-  border-color: #8c8c8c;
+  color: #444444;
+  background-color: #c4c4c4;
+  border-color: #919191;
 }
 .btn-default:hover {
-  color: #333333;
-  background-color: #2b2b2b;
-  border-color: #adadad;
+  color: #444444;
+  background-color: #c4c4c4;
+  border-color: #b2b2b2;
 }
 .btn-default:active,
 .btn-default.active,
 .open > .dropdown-toggle.btn-default {
-  color: #333333;
-  background-color: #2b2b2b;
-  border-color: #adadad;
+  color: #444444;
+  background-color: #c4c4c4;
+  border-color: #b2b2b2;
 }
 .btn-default:active:hover,
 .btn-default.active:hover,
@@ -3097,9 +3094,9 @@ fieldset[disabled] a.btn {
 .btn-default:active.focus,
 .btn-default.active.focus,
 .open > .dropdown-toggle.btn-default.focus {
-  color: #333333;
-  background-color: #191919;
-  border-color: #8c8c8c;
+  color: #444444;
+  background-color: #b2b2b2;
+  border-color: #919191;
 }
 .btn-default:active,
 .btn-default.active,
@@ -3115,12 +3112,12 @@ fieldset[disabled] .btn-default:focus,
 .btn-default.disabled.focus,
 .btn-default[disabled].focus,
 fieldset[disabled] .btn-default.focus {
-  background-color: #444444;
-  border-color: #cccccc;
+  background-color: #dddddd;
+  border-color: #d0d0d0;
 }
 .btn-default .badge {
-  color: #444444;
-  background-color: #333333;
+  color: #dddddd;
+  background-color: #444444;
 }
 .btn-primary {
   color: #ffffff;
