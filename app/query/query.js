@@ -52,7 +52,7 @@
       vm.loading_more = false;
 
       vm.search_objects = [
-        {category: {val: 'type', desc: 'BGC type'}, term: ''}
+        {category: {val: 'type', desc: 'BGC type'}, term: '', operation: 'and'}
       ];
 
       vm.categories = [
@@ -75,7 +75,7 @@
         var compiled_search = [];
         vm.search_objects.forEach(function(el) {
           if (el.term != ''){
-            compiled_search.push('[' + el.category.val + ']' + el.term);
+            compiled_search.push('[' + el.category.val + ':' + (el.operation?el.operation:'and') + ']' + el.term);
           }
         }, this);
         vm.search_string = compiled_search.join(' ');
@@ -142,7 +142,7 @@
       };
 
       function addEntry(){
-        vm.search_objects.push({category: {val: 'type', desc:'BGC type'}, term: ''});
+        vm.search_objects.push({category: {val: 'type', desc:'BGC type'}, term: '', operation: 'and'});
       };
 
       function removeEntry(entry){

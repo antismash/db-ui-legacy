@@ -19,7 +19,7 @@
             <button class="btn btn-primary btn-block" ng-click="ctrl.simpleSearch()">Search</button>
           </div>
           <div class="col-md-offset-2 col-md-2 search-button">
-            <button class="btn btn-block" ng-click="ctrl.loadExample()">Load example</button>
+            <button class="btn btn-default btn-block" ng-click="ctrl.loadExample()">Load example</button>
           </div>
         </div>
       </form>
@@ -27,15 +27,21 @@
     <uib-tab index="1" heading="Build a query">
       <div class="pattern-list form-horizontal">
         <div class="form-group pad-left-1 row" ng-repeat="entry in ctrl.search_objects">
-          <label class="control-label col-sm-2">Category:</label>
           <div class="col-sm-2">
             <select class="form-control" ng-options="o.desc for o in ctrl.categories track by o.val" ng-model="entry.category"></select>
           </div>
           <div class="col-sm-6">
             <input class="form-control" ng-model="entry.term" placeholder="search term">
           </div>
+          <div class="col-sm-2">
+            <div class="btn-group">
+            <label class="btn btn-default" ng-model="entry.operation" uib-btn-radio="'and'">AND</label>
+            <label class="btn btn-default" ng-model="entry.operation" uib-btn-radio="'or'">OR</label>
+            <label class="btn btn-default" ng-model="entry.operation" uib-btn-radio="'not'">NOT</label>
+            </div>
+          </div>
           <div class="col-sm-1">
-            <button class="btn" ng-click="ctrl.removeEntry(entry)"><i class="fa fa-trash"></i></button>
+            <button class="btn btn-default" ng-click="ctrl.removeEntry(entry)"><i class="fa fa-trash"></i></button>
           </div>
         </div>
       </div>
@@ -44,10 +50,10 @@
           <button class="btn btn-primary btn-block" ng-click="ctrl.search()"><i class="fa fa-search"></i> Search</button>
         </div>
         <div class="col-md-2 col-md-offset-1">
-          <button class="btn btn-block" ng-click="ctrl.addEntry()"><i class="fa fa-plus"></i> Add search term</button>
+          <button class="btn btn-default btn-block" ng-click="ctrl.addEntry()"><i class="fa fa-plus"></i> Add search term</button>
         </div>
         <div class="col-md-2 col-md-offset-5">
-          <button class="btn btn-block" ng-click="ctrl.loadExample()"><i class="fa"></i>Load example search</button>
+          <button class="btn btn-default btn-block" ng-click="ctrl.loadExample()"><i class="fa"></i>Load example search</button>
         </div>
       </div>
     </uib-tab>

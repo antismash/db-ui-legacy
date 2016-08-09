@@ -69,8 +69,8 @@ describe('QueryController', function () {
 
     describe('search', function () {
       it('should build the correct query', function () {
-        $httpBackend.expectPOST('/api/v1.0/search', { search_string: '[type]fake' });
-        ctrl.search_objects = [{ category: { val: 'type', desc: 'BGC type' }, term: 'fake' }];
+        $httpBackend.expectPOST('/api/v1.0/search', { search_string: '[type:and]fake' });
+        ctrl.search_objects = [{ category: { val: 'type', desc: 'BGC type' }, term: 'fake', operation: 'and' }];
         ctrl.search();
         $httpBackend.flush();
       });
@@ -82,10 +82,10 @@ describe('QueryController', function () {
       });
 
       it('should not include a search_object with an empty term', function () {
-        $httpBackend.expectPOST('/api/v1.0/search', { search_string: '[type]fake' });
+        $httpBackend.expectPOST('/api/v1.0/search', { search_string: '[type:or]fake' });
         ctrl.search_objects = [
-          { category: { val: 'type', desc: 'BGC type' }, term: 'fake' },
-          { category: { val: 'monomer', desc: 'Monomer' }, term: '' }
+          { category: { val: 'type', desc: 'BGC type' }, term: 'fake', operation: 'or' },
+          { category: { val: 'monomer', desc: 'Monomer' }, term: '', operation: 'not' }
         ];
         ctrl.search();
         $httpBackend.flush();
@@ -166,11 +166,11 @@ describe('QueryController', function () {
 
   describe('addEntry', function () {
     it('should add the correct search entry', function () {
-      expect(ctrl.search_objects).toEqual([{ category: { val: 'type', desc: 'BGC type' }, term: '' }]);
+      expect(ctrl.search_objects).toEqual([{ category: { val: 'type', desc: 'BGC type' }, term: '', operation: 'and'}]);
       ctrl.addEntry();
       expect(ctrl.search_objects).toEqual([
-        { category: { val: 'type', desc: 'BGC type' }, term: '' },
-        { category: { val: 'type', desc: 'BGC type' }, term: '' }
+        { category: { val: 'type', desc: 'BGC type' }, term: '', operation: 'and'},
+        { category: { val: 'type', desc: 'BGC type' }, term: '', operation: 'and'}
       ]);
     });
   });
