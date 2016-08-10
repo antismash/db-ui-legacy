@@ -46,6 +46,7 @@
       vm.loadExample = loadExample;
       vm.resetSearch = resetSearch;
       vm.downloadCsv = downloadCsv;
+      vm.getTerms = getTerms;
       vm.search_pending = false;
       vm.search_done = false;
       vm.loading_more = false;
@@ -175,6 +176,13 @@
         return Csv.csv(null, {search_string: vm.search_string}).$promise.then(function (data) {
           var blob = data.response;
           $window.saveAs(blob, 'asdb_search_results.cvs');
+        });
+      };
+
+      function getTerms(category, term){
+        return $http.get('/api/v1.0/available/' + category.val + '/' + term)
+        .then(function(response){
+          return response.data;
         });
       };
 

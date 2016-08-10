@@ -28,16 +28,20 @@
       <div class="pattern-list form-horizontal">
         <div class="form-group pad-left-1 row" ng-repeat="entry in ctrl.search_objects">
           <div class="col-sm-2">
-            <select class="form-control" ng-options="o.desc for o in ctrl.categories track by o.val" ng-model="entry.category"></select>
-          </div>
-          <div class="col-sm-6">
-            <input class="form-control" ng-model="entry.term" placeholder="search term">
-          </div>
-          <div class="col-sm-2">
             <div class="btn-group">
             <label class="btn btn-default" ng-model="entry.operation" uib-btn-radio="'and'">AND</label>
             <label class="btn btn-default" ng-model="entry.operation" uib-btn-radio="'or'">OR</label>
             <label class="btn btn-default" ng-model="entry.operation" uib-btn-radio="'not'">NOT</label>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <select class="form-control" ng-options="o.desc for o in ctrl.categories track by o.val" ng-model="entry.category"></select>
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" ng-model="entry.term" placeholder="search term" uib-typeahead="term for term in ctrl.getTerms(entry.category, $viewValue)">
+            <i ng-show="entry.loading" class="fa fa-refresh fa-spin"></i>
+            <div ng-show="entry.no_results">
+              <i class="fa fa-times"></i> No results
             </div>
           </div>
           <div class="col-sm-1">
