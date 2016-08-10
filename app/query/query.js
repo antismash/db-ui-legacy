@@ -14,7 +14,6 @@
         responseType: 'arraybuffer',
         cache: true,
         transformResponse: function (data) {
-          console.log(data);
           var csv;
           if (data) {
             csv = new Blob([data], {
@@ -173,7 +172,6 @@
       };
 
       function downloadCsv(){
-        console.log("clicked");
         return Csv.csv(null, {search_string: vm.search_string}).$promise.then(function (data) {
           var blob = data.response;
           $window.saveAs(blob, 'asdb_search_results.cvs');
