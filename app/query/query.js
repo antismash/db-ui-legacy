@@ -51,6 +51,22 @@
       vm.search_done = false;
       vm.loading_more = false;
 
+      vm.hide_stats = true;
+      vm.clusters_by_type_options = {
+        title: {display: true, text: 'Clusters by types'},
+        scales: {
+          xAxes: [{ ticks: { autoSkip: false} }],
+          yAxes: [{ ticks: {min: 0} }]
+        }
+      };
+      vm.clusters_by_phylum_options = {
+        title: {display: true, text: 'Clusters by phylum'},
+        scales: {
+          xAxes: [{ ticks: { autoSkip: false} }],
+          yAxes: [{ ticks: {min: 0} }]
+        }
+      };
+
       vm.search_objects = [
         {category: {val: 'type', desc: 'BGC type'}, term: '', operation: 'and'}
       ];

@@ -21,6 +21,8 @@ module.exports = function(config) {
       'vendor/jquery/dist/jquery.js',
       'vendor/jstree/dist/jstree.js',
       'vendor/jsTree-directive/jsTree.directive.js',
+      'vendor/chart.js/dist/Chart.min.js',
+      'vendor/angular-chart.js/dist/angular-chart.min.js',
       'app/**/*.js',
     ],
 
