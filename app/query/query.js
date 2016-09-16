@@ -139,7 +139,7 @@
 
       function showCluster(entry) {
         var cluster_acc = entry.acc + '_c' + entry.cluster_number;
-        $window.open('/output/' + entry.acc + '/index.html#cluster-' + entry.cluster_number, '_new');
+        $window.open('/output/' + entry.acc + '/index.html#cluster-' + entry.cluster_number, '_blank');
       };
 
       function getNcbiUrl(accession) {

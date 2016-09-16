@@ -137,7 +137,7 @@ describe('QueryController', function () {
   describe('showCluster', function () {
     it('should open the correct URL', function () {
       ctrl.showCluster({ acc: 'ABC1234', cluster_number: 23 });
-      expect($window.open).toHaveBeenCalledWith('/output/ABC1234/index.html#cluster-23', '_new');
+      expect($window.open).toHaveBeenCalledWith('/output/ABC1234/index.html#cluster-23', '_blank');
     });
   });
 
