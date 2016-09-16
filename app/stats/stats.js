@@ -10,32 +10,30 @@
     function ($http) {
 
       var vm = this;
-      vm.general_stats = [
-        { 'name': 'Secondary metabolite clusters', 'value': '?' },
-        { 'name': 'Most secondary metabolite clusters', 'value': '?' },
-        { 'name': 'NCBI taxon with most clusters', 'value': '?' },
-        { 'name': 'Clusters in top taxon', 'value': '?' },
-        { 'name': 'Genomes', 'value': '?' },
-        { 'name': 'Sequences', 'value': '?' },
-        { 'name': 'NCBI taxon with most sequences', 'value': '?' },
-        { 'name': 'Sequences in top taxon', 'value': '?' },
-
-      ];
+      vm.general_stats = {
+        'num_clusters': '?',
+        'top_secmet_species': '?',
+        'top_secmet_taxon': '?',
+        'top_secmet_taxon_count': '?',
+        'num_genomes': '?',
+        'num_sequences': '?',
+        'top_seq_taxon': '?',
+        'top_seq_taxon_count': '?'
+      };
       vm.sec_met_clusters = [];
 
 
       $http.get('/api/v1.0/stats').then(function(response){
-        vm.general_stats = [
-          {'name': 'Secondary metabolite clusters', 'value': response.data.num_clusters},
-          {'name': 'Most secondary metabolite clusters', 'value': response.data.top_secmet_species},
-          {'name': 'NCBI taxon with most clusters', 'value': response.data.top_secmet_taxon},
-          {'name': 'Clusters in top taxon', 'value': response.data.top_secmet_taxon_count},
-          {'name': 'Genomes', 'value': response.data.num_genomes},
-          {'name': 'Sequences', 'value': response.data.num_sequences},
-          {'name': 'NCBI taxon with most sequences', 'value': response.data.top_seq_taxon},
-          {'name': 'Sequences in top taxon', 'value': response.data.top_seq_taxon_count},
-
-        ];
+        vm.general_stats = {
+          'num_clusters': response.data.num_clusters,
+          'top_secmet_species': response.data.top_secmet_species,
+          'top_secmet_taxon': response.data.top_secmet_taxon,
+          'top_secmet_taxon_count': response.data.top_secmet_taxon_count,
+          'num_genomes': response.data.num_genomes,
+          'num_sequences': response.data.num_sequences,
+          'top_seq_taxon': response.data.top_seq_taxon,
+          'top_seq_taxon_count': response.data.top_seq_taxon_count
+        };
         vm.sec_met_clusters = response.data.clusters;
       })
     }]);
