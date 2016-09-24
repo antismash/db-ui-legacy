@@ -50,6 +50,7 @@
       vm.search_pending = false;
       vm.search_done = false;
       vm.loading_more = false;
+      vm.ran_simple_search = false;
 
       vm.hide_stats = true;
       vm.clusters_by_type_options = {
@@ -75,7 +76,8 @@
         {val: 'type', desc: 'BGC type'},
         {val: 'monomer', desc: 'Monomer'},
         {val: 'acc', desc: 'NCBI Accession'},
-        {val: 'compound_seq', desc: 'Compound sequence'},
+        {val: 'compoundseq', desc: 'Compound sequence'},
+        {val: 'strain', desc: 'Strain'},
         {val: 'species', desc: 'Species'},
         {val: 'genus', desc: 'Genus'},
         {val: 'family', desc: 'Family'},
@@ -85,20 +87,29 @@
         {val: 'superkingdom', desc: 'Superkingdom'}
       ]
 
+      vm.query = {
+        search: 'cluster',
+        return_type: 'json',
+        terms: {
+          term_type: 'expr',
+          category: 'type',
+          term: 'ripp'
+        }
+      };
+
       vm.results = {};
 
       function search() {
-        var compiled_search = [];
-        vm.search_objects.forEach(function(el) {
-          if (el.term != ''){
-            compiled_search.push('[' + el.category.val + ':' + (el.operation?el.operation:'and') + ']' + el.term);
+        vm.search_pending = true;
+        $http.post('/api/v1.0/search', {query: vm.query}).then(
+          function(results){
+            vm.results = results.data;
+            vm.search_pending = false;
+            vm.search_done = true;
+            vm.ran_simple_search = false;
           }
-        }, this);
-        vm.search_string = compiled_search.join(' ');
-        if (vm.search_string != '') {
-          vm.simpleSearch();
-        }
-      }
+        );
+      };
 
       function simpleSearch() {
         vm.search_pending = true;
@@ -107,6 +118,7 @@
             vm.results = results.data;
             vm.search_pending = false;
             vm.search_done = true;
+            vm.ran_simple_search = true;
           }
         )
       };
@@ -189,7 +201,14 @@
       };
 
       function downloadCsv(){
-        return Csv.csv(null, {search_string: vm.search_string}).$promise.then(function (data) {
+        var search_obj;
+        if (vm.ran_simple_search) {
+          search_obj = {search_string: vm.search_string};
+        } else {
+          search_obj = {query: vm.query};
+          vm.query.return_type = 'csv';
+        }
+        return Csv.csv(null, search_obj).$promise.then(function (data) {
           var blob = data.response;
           $window.saveAs(blob, 'asdb_search_results.cvs');
         });

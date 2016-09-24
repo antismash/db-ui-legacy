@@ -109,7 +109,7 @@
     </thead>
     <tbody>
       <tr class="cluster-list" ng-repeat="entry in ctrl.results.clusters" ng-click="ctrl.showCluster(entry)">
-        <td>{{entry.species}}</td>
+        <td>{{entry.genus}} {{entry.species}} {{entry.strain}}</td>
         <td><a ng-href="{{ctrl.getNcbiUrl(entry.acc)}}" target="_new" ng-show="entry.acc != null" ng-click="$event.stopPropagation();">{{entry.acc}}</a></td>
         <td class="cluster-type"><span class="badge" ng-class="entry.term">{{entry.cluster_number}}</span></td>
         <td>{{entry.description}}</td>
