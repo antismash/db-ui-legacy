@@ -2,7 +2,10 @@
 
 (function () {
 
-  var app = angular.module('antismash.db.ui.query', ['ngResource']);
+  var app = angular.module('antismash.db.ui.query', [
+    'ngResource',
+    'antismash.db.ui.queryterm'
+  ]);
 
   app.factory('Csv', ['$resource', function ($resource) {
     return $resource('/api/v1.0/export', null, {
@@ -34,6 +37,7 @@
       var vm = this;
 
       vm.search_string = '';
+      vm.isValidSearch = isValidSearch;
       vm.search = search;
       vm.simpleSearch = simpleSearch;
       vm.showCluster = showCluster;
@@ -43,10 +47,12 @@
       vm.getMibigUrl = getMibigUrl;
       vm.addEntry = addEntry;
       vm.removeEntry = removeEntry;
-      vm.loadExample = loadExample;
+      vm.loadSimpleExample = loadSimpleExample;
+      vm.loadComplexExample = loadComplexExample;
       vm.resetSearch = resetSearch;
       vm.downloadCsv = downloadCsv;
-      vm.getTerms = getTerms;
+      vm.exportFile = exportFile;
+      vm.showSearch = showSearch;
       vm.search_pending = false;
       vm.search_done = false;
       vm.loading_more = false;
@@ -68,38 +74,52 @@
         }
       };
 
-      vm.search_objects = [
-        {category: {val: 'type', desc: 'BGC type'}, term: '', operation: 'and'}
-      ];
-
-      vm.categories = [
-        {val: 'type', desc: 'BGC type'},
-        {val: 'monomer', desc: 'Monomer'},
-        {val: 'acc', desc: 'NCBI Accession'},
-        {val: 'compoundseq', desc: 'Compound sequence'},
-        {val: 'strain', desc: 'Strain'},
-        {val: 'species', desc: 'Species'},
-        {val: 'genus', desc: 'Genus'},
-        {val: 'family', desc: 'Family'},
-        {val: 'order', desc: 'Order'},
-        {val: 'class', desc: 'Class'},
-        {val: 'phylum', desc: 'Phylum'},
-        {val: 'superkingdom', desc: 'Superkingdom'}
-      ]
-
       vm.query = {
         search: 'cluster',
         return_type: 'json',
         terms: {
           term_type: 'expr',
-          category: 'type',
-          term: 'ripp'
+          category: '',
+          term: ''
         }
       };
 
       vm.results = {};
 
+      function isValidSearch() {
+        if (!vm.query) {
+          return false;
+        }
+        if (!vm.query.terms) {
+          return false;
+        }
+        return isValidTerm(vm.query.terms);
+      }
+
+      /* Recursively check if a term is valid
+         Terms are considered valid if their category and term are not an
+         empty string
+       */
+      function isValidTerm(term) {
+        if (term.term_type == 'expr') {
+          if (term.category == '') {
+            return false;
+          }
+          if (term.term == '') {
+            return false;
+          }
+          return true;
+        }
+        if (term.term_type == 'op') {
+          return isValidTerm(term.left) && isValidTerm(term.right);
+        }
+        return false;
+      }
+
       function search() {
+        if (!isValidSearch()){
+          return;
+        }
         vm.search_pending = true;
         $http.post('/api/v1.0/search', {query: vm.query}).then(
           function(results){
@@ -180,19 +200,39 @@
         }
       };
 
-      function loadExample(entry){
-        vm.search_objects = [
-          {
-            category: {val: 'type', desc: 'BGC type'},
-            term: 'lantipeptide'
-          },
-          {
-            category: {val: 'genus', desc: 'Genus'},
-            term: 'Streptomyces'
-          }
-        ];
+      function loadSimpleExample(entry){
         vm.search_string = 'lantipeptide Streptomyces';
       };
+
+      function loadComplexExample(entry) {
+        vm.query = {
+          search: 'cluster',
+          return_type: 'json',
+          terms: {
+            term_type: 'op',
+            operation: 'and',
+            left: {
+              term_type: 'expr',
+              category: 'type',
+              term: 'ripp'
+            },
+            right: {
+              term_type: 'op',
+              operation: 'or',
+              left: {
+                term_type: 'expr',
+                category: 'genus',
+                term: 'Streptomyces'
+              },
+              right: {
+                term_type: 'expr',
+                category: 'genus',
+                term: 'Lactococcus'
+              }
+            }
+          }
+        };
+      }
 
       function resetSearch(){
         vm.search_done = false;
@@ -200,24 +240,37 @@
         vm.results = {};
       };
 
+      function showSearch() {
+        if (vm.query == {}){
+          return true;
+        };
+        if (vm.query.return_type == 'json') {
+          return true;
+        }
+        return false;
+      };
+
       function downloadCsv(){
+        if (vm.query) {
+          vm.query.return_type = 'csv';
+        }
+        exportFile();
+      }
+
+      function exportFile(){
         var search_obj;
         if (vm.ran_simple_search) {
           search_obj = {search_string: vm.search_string};
         } else {
           search_obj = {query: vm.query};
-          vm.query.return_type = 'csv';
         }
         return Csv.csv(null, search_obj).$promise.then(function (data) {
           var blob = data.response;
-          $window.saveAs(blob, 'asdb_search_results.cvs');
-        });
-      };
-
-      function getTerms(category, term){
-        return $http.get('/api/v1.0/available/' + category.val + '/' + term)
-        .then(function(response){
-          return response.data;
+          var ending = 'csv'
+          if (vm.query && vm.query.return_type) {
+            ending = vm.query.return_type;
+          }
+          $window.saveAs(blob, 'asdb_search_results.' + ending);
         });
       };
 

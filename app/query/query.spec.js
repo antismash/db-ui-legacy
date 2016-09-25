@@ -69,26 +69,20 @@ describe('QueryController', function () {
 
     describe('search', function () {
       it('should build the correct query', function () {
-        $httpBackend.expectPOST('/api/v1.0/search', { search_string: '[type:and]fake' });
-        ctrl.search_objects = [{ category: { val: 'type', desc: 'BGC type' }, term: 'fake', operation: 'and' }];
+        var expected_query = {query: {search: 'cluster', return_type: 'json',
+                              terms: {term_type: 'expr', category: 'type', term: 'fake'}}};
+        $httpBackend.expectPOST('/api/v1.0/search', expected_query);
+        ctrl.query = {search: 'cluster', return_type: 'json',
+                      terms: {term_type: 'expr', category: 'type', term: 'fake'}}
         ctrl.search();
         $httpBackend.flush();
       });
 
-      it('should not trigger a search on empty search_objects', function () {
-        ctrl.search_objects = [];
+      it('should not trigger a search on empty query', function () {
+        ctrl.query = {search: 'cluster', return_type: 'json',
+                      terms: {term_type: 'expr', category: '', term: ''}};
         ctrl.search();
         /* This would throw an error for "unflushed request" if search() did trigger a request */
-      });
-
-      it('should not include a search_object with an empty term', function () {
-        $httpBackend.expectPOST('/api/v1.0/search', { search_string: '[type:or]fake' });
-        ctrl.search_objects = [
-          { category: { val: 'type', desc: 'BGC type' }, term: 'fake', operation: 'or' },
-          { category: { val: 'monomer', desc: 'Monomer' }, term: '', operation: 'not' }
-        ];
-        ctrl.search();
-        $httpBackend.flush();
       });
     });
 
@@ -164,48 +158,42 @@ describe('QueryController', function () {
   });
 
 
-  describe('addEntry', function () {
-    it('should add the correct search entry', function () {
-      expect(ctrl.search_objects).toEqual([{ category: { val: 'type', desc: 'BGC type' }, term: '', operation: 'and'}]);
-      ctrl.addEntry();
-      expect(ctrl.search_objects).toEqual([
-        { category: { val: 'type', desc: 'BGC type' }, term: '', operation: 'and'},
-        { category: { val: 'type', desc: 'BGC type' }, term: '', operation: 'and'}
-      ]);
-    });
-  });
-
-
-  describe('removeEntry', function () {
-    it('should remove an existing entry', function () {
-      ctrl.removeEntry(ctrl.search_objects[0]);
-      expect(ctrl.search_objects.length).toBe(0);
-    });
-
-    it('should ignore nonexistent objects to remove', function () {
-      ctrl.removeEntry({ id: 'fake' });
-      expect(ctrl.search_objects.length).toBe(1);
-    })
-  });
-
-
-  describe('loadExample', function () {
+  describe('loadComplexExample', function () {
     it('should replace the search_objects', function () {
-      ctrl.loadExample();
-      expect(ctrl.search_objects).toEqual([
-        {
-          category: { val: 'type', desc: 'BGC type' },
-          term: 'lantipeptide'
-        },
-        {
-          category: { val: 'genus', desc: 'Genus' },
-          term: 'Streptomyces'
-        }
-      ]);
+      ctrl.loadComplexExample();
+      expect(ctrl.query).toEqual({
+          search: 'cluster',
+          return_type: 'json',
+          terms: {
+            term_type: 'op',
+            operation: 'and',
+            left: {
+              term_type: 'expr',
+              category: 'type',
+              term: 'ripp'
+            },
+            right: {
+              term_type: 'op',
+              operation: 'or',
+              left: {
+                term_type: 'expr',
+                category: 'genus',
+                term: 'Streptomyces'
+              },
+              right: {
+                term_type: 'expr',
+                category: 'genus',
+                term: 'Lactococcus'
+              }
+            }
+          }
+        });
     });
+  });
 
+  describe('loadSimpleExample', function() {
     it('should set the search_string', function () {
-      ctrl.loadExample();
+      ctrl.loadSimpleExample();
       expect(ctrl.search_string).toEqual('lantipeptide Streptomyces');
     })
   });

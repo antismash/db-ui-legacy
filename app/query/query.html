@@ -19,45 +19,41 @@
             <button class="btn btn-primary btn-block" ng-click="ctrl.simpleSearch()">Search</button>
           </div>
           <div class="col-md-offset-2 col-md-2 search-button">
-            <button class="btn btn-default btn-block" ng-click="ctrl.loadExample()">Load example</button>
+            <button class="btn btn-default btn-block" ng-click="ctrl.loadSimpleExample()">Load example</button>
           </div>
         </div>
       </form>
     </uib-tab>
     <uib-tab index="1" heading="Build a query">
       <div class="pattern-list form-horizontal">
-        <div class="form-group pad-left-1 row" ng-repeat="entry in ctrl.search_objects">
-          <div class="col-sm-2">
+        <div class="form-group">
+          <label class="col-sm-1 control-label">Search: </label>
+          <div class="col-sm-3">
             <div class="btn-group">
-            <label class="btn btn-default" ng-model="entry.operation" uib-btn-radio="'and'">AND</label>
-            <label class="btn btn-default" ng-model="entry.operation" uib-btn-radio="'or'">OR</label>
-            <label class="btn btn-default" ng-model="entry.operation" uib-btn-radio="'not'">NOT</label>
+              <label class="btn btn-default" ng-model="ctrl.query.search" uib-btn-radio="'cluster'">Cluster</label>
+              <label class="btn btn-default" ng-model="ctrl.query.search" uib-btn-radio="'gene'">Gene</label>
+              <label class="btn btn-default" ng-model="ctrl.query.search" uib-btn-radio="'domain'">Domain</label>
             </div>
           </div>
-          <div class="col-sm-2">
-            <select class="form-control" ng-options="o.desc for o in ctrl.categories track by o.val" ng-model="entry.category"></select>
-          </div>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" ng-model="entry.term" placeholder="search term" uib-typeahead="term for term in ctrl.getTerms(entry.category, $viewValue)">
-            <i ng-show="entry.loading" class="fa fa-refresh fa-spin"></i>
-            <div ng-show="entry.no_results">
-              <i class="fa fa-times"></i> No results
+          <label class="col-sm-2 col-sm-offset-2 control-label">Return data in format: </label>
+          <div class="col-sm-3">
+            <div class="btn-group">
+              <label class="btn btn-default" ng-model="ctrl.query.return_type" uib-btn-radio="'json'">Graphical</label>
+              <label class="btn btn-default" ng-model="ctrl.query.return_type" uib-btn-radio="'csv'">CSV</label>
+              <label class="btn btn-default" ng-model="ctrl.query.return_type" uib-btn-radio="'fasta'">FASTA</label>
             </div>
-          </div>
-          <div class="col-sm-1">
-            <button class="btn btn-default" ng-click="ctrl.removeEntry(entry)"><i class="fa fa-trash"></i></button>
           </div>
         </div>
+        <as-query-term term="ctrl.query.terms" categories="ctrl.categories"></as-query-term>
       </div>
       <div class="row">
         <div class="col-md-2">
-          <button class="btn btn-primary btn-block" ng-click="ctrl.search()"><i class="fa fa-search"></i> Search</button>
+          <button ng-if="ctrl.showSearch()" class="btn btn-primary btn-block" ng-click="ctrl.search()" ng-disabled="!ctrl.isValidSearch()"><i class="fa fa-search"></i> Search</button>
+          <button ng-if="!ctrl.showSearch()" class="btn btn-primary btn-block" ng-click="ctrl.exportFile()" ng-disabled="!ctrl.isValidSearch()"><i class="fa fa-search"></i> Export</button>
         </div>
-        <div class="col-md-2 col-md-offset-1">
-          <button class="btn btn-default btn-block" ng-click="ctrl.addEntry()"><i class="fa fa-plus"></i> Add search term</button>
-        </div>
-        <div class="col-md-2 col-md-offset-5">
-          <button class="btn btn-default btn-block" ng-click="ctrl.loadExample()"><i class="fa"></i>Load example search</button>
+
+        <div class="col-md-2 col-md-offset-8">
+          <button class="btn btn-default btn-block" ng-click="ctrl.loadComplexExample()"><i class="fa"></i>Load example search</button>
         </div>
       </div>
     </uib-tab>
