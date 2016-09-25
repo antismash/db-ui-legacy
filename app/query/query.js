@@ -158,7 +158,7 @@
         if (!accession){
           return '';
         }
-        return "http://www.ncbi.nlm.nih.gov/genome/?term=" + accession;
+        return "https://www.ncbi.nlm.nih.gov/genome/?term=" + accession;
       }
 
       function getMibigUrl(accession) {
@@ -166,7 +166,7 @@
           return '';
         }
         var acc = accession.split(/_/)[0];
-        return "http://mibig.secondarymetabolites.org/repository/" + acc + "/index.html#cluster-1";
+        return "https://mibig.secondarymetabolites.org/repository/" + acc + "/index.html#cluster-1";
       };
 
       function addEntry(){

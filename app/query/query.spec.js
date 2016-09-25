@@ -148,7 +148,7 @@ describe('QueryController', function () {
     });
 
     it('should return the proper MIBiG link when there is an accession', function () {
-      expect(ctrl.getMibigUrl('BGC123456_c1')).toBe('http://mibig.secondarymetabolites.org/repository/BGC123456/index.html#cluster-1');
+      expect(ctrl.getMibigUrl('BGC123456_c1')).toBe('https://mibig.secondarymetabolites.org/repository/BGC123456/index.html#cluster-1');
     });
   });
 
@@ -159,7 +159,7 @@ describe('QueryController', function () {
     });
 
     it('should return the proper NCBI link when there is an accession', function () {
-      expect(ctrl.getNcbiUrl('ABC1234')).toBe('http://www.ncbi.nlm.nih.gov/genome/?term=ABC1234');
+      expect(ctrl.getNcbiUrl('ABC1234')).toBe('https://www.ncbi.nlm.nih.gov/genome/?term=ABC1234');
     })
   });
 
