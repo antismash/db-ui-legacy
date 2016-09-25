@@ -7,7 +7,7 @@
     'antismash.db.ui.queryterm'
   ]);
 
-  app.factory('Csv', ['$resource', function ($resource) {
+  app.factory('Downloader', ['$resource', function ($resource) {
     return $resource('/api/v1.0/export', null, {
       csv: {
         method: 'POST',
@@ -27,12 +27,50 @@
             response: csv
           };
         }
+      },
+      fasta: {
+        method: 'POST',
+        headers: {
+          accept: 'application/fasta'
+        },
+        responseType: 'arraybuffer',
+        cache: true,
+        transformResponse: function (data) {
+          var fasta;
+          if (data) {
+            fasta = new Blob([data], {
+              type: 'application/fasta'
+            });
+          }
+          return {
+            response: fasta
+          };
+        }
+      },
+      json: {
+        method: 'POST',
+        headers: {
+          accept: 'application/json'
+        },
+        responseType: 'arraybuffer',
+        cache: true,
+        transformResponse: function (data) {
+          var json;
+          if (data) {
+            json = new Blob([data], {
+              type: 'application/json'
+            });
+          }
+          return {
+            response: json
+          };
+        }
       }
     });
   }]);
 
-  app.controller('QueryController', ['$http', '$window', 'Csv',
-    function ($http, $window, Csv) {
+  app.controller('QueryController', ['$http', '$window', 'Downloader',
+    function ($http, $window, Downloader) {
 
       var vm = this;
 
@@ -264,13 +302,14 @@
         } else {
           search_obj = {query: vm.query};
         }
-        return Csv.csv(null, search_obj).$promise.then(function (data) {
+        var format = 'csv';
+        if (vm.query && vm.query.return_type) {
+          format = vm.query.return_type;
+        }
+        return Downloader[format](null, search_obj).$promise.then(function (data) {
           var blob = data.response;
-          var ending = 'csv'
-          if (vm.query && vm.query.return_type) {
-            ending = vm.query.return_type;
-          }
-          $window.saveAs(blob, 'asdb_search_results.' + ending);
+
+          $window.saveAs(blob, 'asdb_search_results.' + format);
         });
       };
 
