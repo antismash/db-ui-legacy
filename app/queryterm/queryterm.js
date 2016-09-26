@@ -40,13 +40,14 @@ angular.module('antismash.db.ui.queryterm', [])
       vm.term.right = tmp;
     }
 
-    function getTerms(term){
-        return $http.get('/api/v1.0/available/' + vm.term.category + '/' + term)
-        .then(function(response){
-          return response.data.map(function(value){
-            return value[0];
-          });
-        });
+    function getTerms(term) {
+      if (vm.term.category == '') {
+        return [];
+      }
+      return $http.get('/api/v1.0/available/' + vm.term.category + '/' + term)
+        .then(function (response) {
+          return response.data;
+      });
     };
   }])
   .factory('CategorySvc', function () {

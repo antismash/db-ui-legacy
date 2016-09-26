@@ -1,10 +1,17 @@
+<script type="text/ng-template" id="typeaheadTemplate.html">
+  <a>
+      <span ng-bind-html="match.model.val | uibTypeaheadHighlight:query"></span>
+      <span ng-if="match.model.desc">(<span ng-bind-html="match.model.desc | uibTypeaheadHighlight:query"></span>)</span>
+  </a>
+</script>
+
 <div ng-if="ctrl.term.term_type == 'expr'" class="row">
   <div class="col-sm-3">
     <select class="form-control" ng-options="o.val as o.desc for o in ctrl.categories" ng-model="ctrl.term.category"></select>
   </div>
   <div class="col-sm-4">
-    <input type="text" class="form-control" ng-model="ctrl.term.term" placeholder="search term" uib-typeahead="term for term in ctrl.getTerms($viewValue)"
-      typeahead-loading="loadingTerm" typeahead-no-results="noTermFound">
+    <input type="text" class="form-control" ng-model="ctrl.term.term" placeholder="search term" uib-typeahead="term.val for term in ctrl.getTerms($viewValue)"
+      typeahead-loading="loadingTerm" typeahead-no-results="noTermFound" typeahead-template-url="typeaheadTemplate.html">
     <i ng-show="loadingTerm" class="fa fa-refresh"></i>
     <div ng-show="noTermFound">
       <i class="fa fa-times"></i> No resuts.
