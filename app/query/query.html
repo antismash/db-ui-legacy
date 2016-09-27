@@ -30,17 +30,17 @@
           <label class="col-sm-1 control-label">Search: </label>
           <div class="col-sm-3">
             <div class="btn-group">
-              <label class="btn btn-default" ng-model="ctrl.query.search" uib-btn-radio="'cluster'">Cluster</label>
-              <label class="btn btn-default" ng-model="ctrl.query.search" uib-btn-radio="'gene'">Gene</label>
-              <label class="btn btn-default" ng-model="ctrl.query.search" uib-btn-radio="'domain'">Domain</label>
+              <label class="btn btn-info" ng-model="ctrl.query.search" uib-btn-radio="'cluster'">Cluster</label>
+              <label class="btn btn-info" ng-model="ctrl.query.search" uib-btn-radio="'gene'">Gene</label>
+              <label class="btn btn-info" ng-model="ctrl.query.search" uib-btn-radio="'domain'">Domain</label>
             </div>
           </div>
           <label class="col-sm-2 col-sm-offset-2 control-label">Return data in format: </label>
           <div class="col-sm-3">
             <div class="btn-group">
-              <label class="btn btn-default" ng-model="ctrl.query.return_type" uib-btn-radio="'json'">Graphical</label>
-              <label class="btn btn-default" ng-model="ctrl.query.return_type" uib-btn-radio="'csv'">CSV</label>
-              <label class="btn btn-default" ng-model="ctrl.query.return_type" uib-btn-radio="'fasta'">FASTA</label>
+              <label ng-if="ctrl.graphicalPossible()" class="btn btn-info" ng-model="ctrl.query.return_type" uib-btn-radio="'json'">Graphical</label>
+              <label class="btn btn-info" ng-model="ctrl.query.return_type" uib-btn-radio="'csv'">CSV</label>
+              <label class="btn btn-info" ng-model="ctrl.query.return_type" uib-btn-radio="'fasta'">FASTA</label>
             </div>
           </div>
         </div>
@@ -48,8 +48,12 @@
       </div>
       <div class="row">
         <div class="col-md-2">
-          <button ng-if="ctrl.showSearch()" class="btn btn-primary btn-block" ng-click="ctrl.search()" ng-disabled="!ctrl.isValidSearch()"><i class="fa fa-search"></i> Search</button>
-          <button ng-if="!ctrl.showSearch()" class="btn btn-primary btn-block" ng-click="ctrl.exportFile()" ng-disabled="!ctrl.isValidSearch()"><i class="fa fa-search"></i> Export</button>
+          <button ng-if="ctrl.showSearch()" class="btn btn-primary btn-block" ng-click="ctrl.search()" ng-disabled="!ctrl.isValidSearch()">
+            <i class="fa fa-search"></i> Search
+          </button>
+          <button ng-if="!ctrl.showSearch()" class="btn btn-primary btn-block" ng-click="ctrl.exportFile()" ng-disabled="!ctrl.isValidSearch()">
+            <i class="fa fa-download"></i> Download
+          </button>
         </div>
 
         <div class="col-md-2 col-md-offset-8">

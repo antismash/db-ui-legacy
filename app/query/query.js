@@ -91,6 +91,7 @@
       vm.downloadCsv = downloadCsv;
       vm.exportFile = exportFile;
       vm.showSearch = showSearch;
+      vm.graphicalPossible = graphicalPossible;
       vm.search_pending = false;
       vm.search_done = false;
       vm.loading_more = false;
@@ -282,11 +283,20 @@
         if (vm.query == {}){
           return true;
         };
-        if (vm.query.return_type == 'json') {
-          return true;
+        if (graphicalPossible()) {
+          if (vm.query.return_type == 'json') {
+            return true;
+          }
         }
         return false;
       };
+
+      function graphicalPossible() {
+        if (vm.query.search == 'cluster') {
+          return true;
+        }
+        return false;
+      }
 
       function downloadCsv(){
         if (vm.query) {
