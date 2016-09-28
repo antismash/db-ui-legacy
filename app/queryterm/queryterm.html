@@ -10,7 +10,10 @@
     <select class="form-control" ng-options="o.val as o.desc group by o.category for o in ctrl.categories" ng-model="ctrl.term.category"></select>
   </div>
   <div class="col-sm-4">
-    <input type="text" class="form-control" ng-model="ctrl.term.term" placeholder="search term" uib-typeahead="term.val for term in ctrl.getTerms($viewValue)"
+    <input type="text" class="form-control" ng-model="ctrl.term.term"
+      ng-disabled="ctrl.term.category == ''"
+      placeholder="{{ctrl.term.category != '' ? 'search term': 'please select category'}}"
+      uib-typeahead="term.val for term in ctrl.getTerms($viewValue)"
       typeahead-loading="loadingTerm" typeahead-no-results="noTermFound" typeahead-template-url="typeaheadTemplate.html">
     <i ng-show="loadingTerm" class="fa fa-refresh"></i>
     <div ng-show="noTermFound">
