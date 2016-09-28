@@ -93,7 +93,9 @@
       vm.showSearch = showSearch;
       vm.graphicalPossible = graphicalPossible;
       vm.search_pending = false;
+      vm.download_pending = false;
       vm.search_done = false;
+      vm.download_done = false;
       vm.loading_more = false;
       vm.ran_simple_search = false;
 
@@ -276,6 +278,8 @@
       function resetSearch(){
         vm.search_done = false;
         vm.search_pending = false;
+        vm.download_done = false;
+        vm.download_pending = false;
         vm.results = {};
       };
 
@@ -316,8 +320,12 @@
         if (vm.query && vm.query.return_type) {
           format = vm.query.return_type;
         }
+        vm.download_pending = true;
         return Downloader[format](null, search_obj).$promise.then(function (data) {
           var blob = data.response;
+
+          vm.download_pending = false;
+          vm.download_done = true;
 
           $window.saveAs(blob, 'asdb_search_results.' + format);
         });

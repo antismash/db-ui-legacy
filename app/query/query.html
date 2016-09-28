@@ -4,7 +4,7 @@
 </div>
 
 
-<div class="row" ng-hide="ctrl.search_pending || ctrl.search_done">
+<div class="row" ng-hide="ctrl.search_pending || ctrl.search_done || ctrl.download_pending || ctrl.download_done">
   <uib-tabset active="0"" justified="true" type="pills">
     <uib-tab index="0" heading="Simple search">
       <form>
@@ -64,7 +64,7 @@
   </uib-tabset>
 </div>
 
-<div class="row" ng-show="ctrl.search_done">
+<div class="row" ng-show="ctrl.search_done || ctrl.download_done">
   <div class="col-md-2 col-md-offset-10">
     <button class="btn btn-default btn-block" ng-click="ctrl.resetSearch()">New search</button>
   </div>
@@ -130,7 +130,11 @@
   Your search gave no results. Please change your search terms and try again.
 </div>
 
-<div class="row" ng-show="ctrl.search_pending">
+<div class="row" ng-show="ctrl.download_done">
+  Download ready.
+</div>
+
+<div class="row" ng-show="ctrl.search_pending || ctrl.download_pending">
   <i class="fa fa-circle-o-notch fa-spin fa-2x"></i> Searching, please wait...
 </div>
 
