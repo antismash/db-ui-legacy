@@ -67,7 +67,10 @@ angular.module('antismash.db.ui.queryterm', [])
         {val: 'order', desc: 'Order'},
         {val: 'class', desc: 'Class'},
         {val: 'phylum', desc: 'Phylum'},
-        {val: 'superkingdom', desc: 'Superkingdom'}
+        {val: 'superkingdom', desc: 'Superkingdom'},
+        {val: 'clusterblast', desc: 'ClusterBlast hit'},
+        {val: 'knowncluster', desc: 'KnownClusterBlast hit'},
+        {val: 'subcluster', desc: 'SubClusterBlast hit'}
       ];
 
     return {
