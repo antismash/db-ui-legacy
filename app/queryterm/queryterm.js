@@ -53,24 +53,24 @@ angular.module('antismash.db.ui.queryterm', [])
   .factory('CategorySvc', function () {
     var categories = [
         {val: '', desc: '--- Select one ---'},
-        {val: 'type', desc: 'BGC type'},
-        {val: 'monomer', desc: 'Monomer'},
         {val: 'acc', desc: 'NCBI Accession'},
-        {val: 'compoundseq', desc: 'Compound sequence'},
-        {val: 'compoundclass', desc: 'Compound class'},
-        {val: 'profile', desc: 'antiSMASH sec met profile'},
-        {val: 'asdomain', desc: 'antiSMASH NRPS/PKS domain'},
-        {val: 'strain', desc: 'Strain'},
-        {val: 'species', desc: 'Species'},
-        {val: 'genus', desc: 'Genus'},
-        {val: 'family', desc: 'Family'},
-        {val: 'order', desc: 'Order'},
-        {val: 'class', desc: 'Class'},
-        {val: 'phylum', desc: 'Phylum'},
-        {val: 'superkingdom', desc: 'Superkingdom'},
-        {val: 'clusterblast', desc: 'ClusterBlast hit'},
-        {val: 'knowncluster', desc: 'KnownClusterBlast hit'},
-        {val: 'subcluster', desc: 'SubClusterBlast hit'}
+        {val: 'type', desc: 'BGC type', category: 'antiSMASH predictions'},
+        {val: 'monomer', desc: 'Monomer', category: 'antiSMASH predictions'},
+        {val: 'compoundseq', desc: 'Compound sequence', category: 'Compound properties'},
+        {val: 'compoundclass', desc: 'Compound class', category: 'Compound properties'},
+        {val: 'profile', desc: 'Biosynthetic profile', category: 'antiSMASH predictions'},
+        {val: 'asdomain', desc: 'NRPS/PKS domain', category: 'antiSMASH predictions'},
+        {val: 'strain', desc: 'Strain', category: 'Taxonomy'},
+        {val: 'species', desc: 'Species', category: 'Taxonomy'},
+        {val: 'genus', desc: 'Genus', category: 'Taxonomy'},
+        {val: 'family', desc: 'Family', category: 'Taxonomy'},
+        {val: 'order', desc: 'Order', category: 'Taxonomy'},
+        {val: 'class', desc: 'Class', category: 'Taxonomy'},
+        {val: 'phylum', desc: 'Phylum', category: 'Taxonomy'},
+        {val: 'superkingdom', desc: 'Superkingdom', category: 'Taxonomy'},
+        {val: 'clusterblast', desc: 'ClusterBlast hit', category: 'Similar clusters'},
+        {val: 'knowncluster', desc: 'KnownClusterBlast hit', category: 'Similar clusters'},
+        {val: 'subcluster', desc: 'SubClusterBlast hit', category: 'Similar clusters'}
       ];
 
     return {
