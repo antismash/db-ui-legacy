@@ -13,9 +13,9 @@
   <uib-accordion>
     <div uib-accordion-group heading="Finding all nonribosomal peptide clusters that incorporate dihydroxyphenylglycine">
 
-      On the “Build a query” tab, a user can click the “Add a search term” button to create a second search term. For the first
-      term, he or she might, e.g., select “BGC type” as category and enter “nrps” as the search string. For the second term,
-      he or she could, e.g., select “monomer” as category and enter “dhpg” as search string, and hit “search”.
+      On the "Build a query" tab, a user can click the "Add term" button to create a second search term. For the first
+      term, he or she might, e.g., select "BGC type" as category and enter "nrps" as the search string. For the second term,
+      he or she could, e.g., select "monomer" as category and enter "dhpg" as search string, and hit "search".
       <hr />
       <img src="images/tutorial_monomer.png" class="img-responsive center-block img-thumbnail">
       <strong>Query to find NRPS clusters including the monomer dihydroxyphenylglycine (dhpg).</strong>
@@ -31,15 +31,40 @@
         Finding all ribosomally synthesised and posttranslationally modified peptide clusters in the Genus <i>Streptomyces</i> that
         are not lantipeptides.
       </uib-accordion-heading>
-      On the “Build a query” tab, a user could click the “Add a search term” button twice to create a second and third search term.
-      For the first term, he or she could select “BGC type” as category and enter “RiPP” as the search string. For the second
-      term, “BGC type” would be “lantipeptide”, and the left-hand button should be switched from “AND” to “NOT”. The third
-      term, “genus” could be selected as category and “Streptomyces” entered as search string.
+      On the "Build a query" tab, a user could click the "Add term" button twice to create a second and third search term.
+      For the first term, he or she could select "genus" as category and enter "Streptomyces" as the search string. For the second
+      term, "BGC type" would be "ripp". The operation should be switched from "AND" to "EXCEPT". For the third
+      term, "BGC type" could be selected as category and "lantipeptide" entered as search string.
       <hr />
       <img src="images/tutorial_genus.png" class="img-responsive center-block img-thumbnail">
       <strong>Query to find RiPPs in <i>Streptomyces</i> that are not lanthipeptides.</strong>
       <hr /> This query currently yields 265 clusters. To save the results for further analysis, the result table can be downloaded
       as CSV file that can then be opened in a spreadsheet application.
+    </div>
+
+    <div uib-accordion-group heading="Downloading all ACP and KS domains in the database in FASTA format">
+      On the "Build a query" tab, a user can click "NRPS/PKS Domain" on the "Search" setting, and "FASTA" on
+      "Return data in format".
+      Afterwards he or she could click the "Add term" button once to create a second search term.
+      For the first term, he or she could select "NRPS/PKS domain" as category and enter "ACP" as the search string.
+      For the second term, "NRPS/PKS domain" would be the category again, and "PKS_KS" the search string. The operation would be
+      changed to "OR".
+      <hr />
+      <img src="images/tutorial_asdomain.png" class="img-responsive center-block img-thumbnail">
+      <strong>Download all ACP and KS domain in FASTA format</strong>
+      <hr />
+    </div>
+
+    <div uib-accordion-group heading="Downloading all lanthipeptide class I prepeptide genes in FASTA format">
+      On the "Build a query" tab, a user can click "Gene" on the "Search" setting, and "FASTA" on
+      "Return data in format".
+      Afterwards he or she could click the "Add term" button once to create a second search term.
+      For the first term, he or she could select "BGC type" as category and enter "lantipeptide" as the search string.
+      For the second term, the category would be "Compound class", and "Class-I" the search string.
+      <hr />
+      <img src="images/tutorial_gene.png" class="img-responsive center-block img-thumbnail">
+      <strong>Download all lanthipeptide class I prepeptide genes in FASTA format</strong>
+      <hr />
     </div>
   </uib-accordion>
 </div>
