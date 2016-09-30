@@ -69,8 +69,8 @@
     });
   }]);
 
-  app.controller('QueryController', ['$http', '$window', 'Downloader',
-    function ($http, $window, Downloader) {
+  app.controller('QueryController', ['$http', '$window', '$stateParams', 'Downloader',
+    function ($http, $window, $stateParams, Downloader) {
 
       var vm = this;
 
@@ -126,6 +126,11 @@
       };
 
       vm.results = {};
+
+      if ($stateParams.search_string) {
+        vm.search_string = $stateParams.search_string;
+        simpleSearch();
+      }
 
       function isValidSearch() {
         if (!vm.query) {

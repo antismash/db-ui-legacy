@@ -25,7 +25,10 @@ angular.module('antismash.db.ui.routing', [
         url: '/query',
         templateUrl: 'query/query.html',
         controller: 'QueryController',
-        controllerAs: 'ctrl'
+        controllerAs: 'ctrl',
+        params: {
+          search_string: null
+        }
       }).
       state('browse', {
         url: '/browse',
