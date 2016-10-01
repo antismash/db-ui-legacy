@@ -28,19 +28,20 @@
       <div class="pattern-list form-horizontal">
         <div class="form-group">
           <label class="col-sm-1 control-label">Search: </label>
-          <div class="col-sm-3">
+          <div class="col-sm-4">
             <div class="btn-group">
               <label class="btn btn-info" ng-model="ctrl.query.search" uib-btn-radio="'cluster'" ng-click="ctrl.query.return_type = 'json'">Cluster</label>
               <label class="btn btn-info" ng-model="ctrl.query.search" uib-btn-radio="'gene'" ng-click="ctrl.query.return_type = 'fasta'">Gene</label>
-              <label class="btn btn-info" ng-model="ctrl.query.search" uib-btn-radio="'domain'" ng-click="ctrl.query.return_type = 'fasta'">NRPS/PKS Domain</label>
+              <label class="btn btn-info" ng-model="ctrl.query.search" uib-btn-radio="'domain'" ng-click="ctrl.query.return_type = 'aa_fasta'">NRPS/PKS Domain</label>
             </div>
           </div>
-          <label class="col-sm-2 col-sm-offset-2 control-label">Return data in format: </label>
+          <label class="col-sm-2 col-sm-offset-1 control-label">Return data in format: </label>
           <div class="col-sm-3">
             <div class="btn-group">
               <label ng-if="ctrl.graphicalPossible()" class="btn btn-info" ng-model="ctrl.query.return_type" uib-btn-radio="'json'">Graphical</label>
               <label class="btn btn-info" ng-model="ctrl.query.return_type" uib-btn-radio="'csv'">CSV</label>
-              <label class="btn btn-info" ng-model="ctrl.query.return_type" uib-btn-radio="'fasta'">FASTA</label>
+              <label class="btn btn-info" ng-model="ctrl.query.return_type" uib-btn-radio="'fasta'">DNA FASTA</label>
+              <label ng-if="ctrl.query.search != 'cluster'" class="btn btn-info" ng-model="ctrl.query.return_type" uib-btn-radio="'aa_fasta'">AA FASTA</label>
             </div>
           </div>
         </div>

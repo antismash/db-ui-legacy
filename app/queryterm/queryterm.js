@@ -57,7 +57,7 @@ angular.module('antismash.db.ui.queryterm', [])
         {val: 'type', desc: 'BGC type', category: 'antiSMASH predictions'},
         {val: 'monomer', desc: 'Monomer', category: 'antiSMASH predictions'},
         {val: 'compoundseq', desc: 'Compound sequence', category: 'Compound properties'},
-        {val: 'compoundclass', desc: 'Compound class', category: 'Compound properties'},
+        {val: 'compoundclass', desc: 'RiPP Compound class', category: 'Compound properties'},
         {val: 'profile', desc: 'Biosynthetic profile', category: 'antiSMASH predictions'},
         {val: 'asdomain', desc: 'NRPS/PKS domain', category: 'antiSMASH predictions'},
         {val: 'strain', desc: 'Strain', category: 'Taxonomy'},
