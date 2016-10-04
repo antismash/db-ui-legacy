@@ -7,65 +7,56 @@
     'antismash.db.ui.queryterm'
   ]);
 
-  app.factory('Downloader', ['$resource', function ($resource) {
-    return $resource('/api/v1.0/export', null, {
-      csv: {
-        method: 'POST',
-        headers: {
-          accept: 'text/csv'
-        },
-        responseType: 'arraybuffer',
-        cache: true,
-        transformResponse: function (data) {
-          var csv;
-          if (data) {
-            csv = new Blob([data], {
-              type: 'text/csv'
-            });
-          }
-          return {
-            response: csv
-          };
-        }
-      },
-      fasta: {
-        method: 'POST',
-        headers: {
-          accept: 'application/fasta'
-        },
-        responseType: 'arraybuffer',
-        cache: true,
-        transformResponse: function (data) {
-          var fasta;
-          if (data) {
-            fasta = new Blob([data], {
-              type: 'application/fasta'
-            });
-          }
-          return {
-            response: fasta
-          };
-        }
-      },
-      json: {
-        method: 'POST',
-        headers: {
-          accept: 'application/json'
-        },
-        responseType: 'arraybuffer',
-        cache: true,
-        transformResponse: function (data) {
-          var json;
-          if (data) {
-            json = new Blob([data], {
-              type: 'application/json'
-            });
-          }
-          return {
-            response: json
-          };
-        }
+  app.factory('Downloader', ['$resource', '$q', function ($resource, $q) {
+
+    function handleError(data, status) {
+      var decodedString = String.fromCharCode.apply(null, new Uint8Array(data));
+      var error = JSON.parse(decodedString);
+      return {
+        response: error,
+        status: status
       }
+    }
+
+    var MIME_MAP = {
+      csv: 'text/csv',
+      fasta: 'application/fasta',
+      json: 'application/json'
+    }
+
+    function generate_handler(type) {
+      var options = {
+        method: 'POST',
+        headers: {
+          accept: MIME_MAP[type]
+        },
+        responseType: 'arraybuffer',
+        cache: true,
+        transformResponse: function (data, getter, status) {
+          var response;
+
+          if (status != 200) {
+            return handleError(data, status);
+          }
+
+          if (data) {
+            response = new Blob([data], {
+              type: MIME_MAP[type]
+            });
+          }
+          return {
+            response: response
+          };
+        }
+      };
+      return options;
+    }
+
+    return $resource('/api/v1.0/export', null, {
+      csv: generate_handler('csv'),
+      fasta: generate_handler('fasta'),
+      fastaa: generate_handler('fasta'),
+      json: generate_handler('json')
     });
   }]);
 
@@ -285,6 +276,7 @@
         vm.search_pending = false;
         vm.download_done = false;
         vm.download_pending = false;
+        vm.download_failed = false;
         vm.results = {};
       };
 
@@ -333,6 +325,16 @@
           vm.download_done = true;
 
           $window.saveAs(blob, 'asdb_search_results.' + format);
+        }).catch(function(error){
+          console.log(error);
+          vm.download_pending = false;
+          vm.download_done = false;
+          vm.download_failed = true;
+          if (error.data.response.error) {
+            vm.failure_reason = error.data.response.error;
+          } else {
+            vm.failure_reason = error.statusText;
+          }
         });
       };
 

@@ -4,7 +4,7 @@
 </div>
 
 
-<div class="row" ng-hide="ctrl.search_pending || ctrl.search_done || ctrl.download_pending || ctrl.download_done">
+<div class="row" ng-hide="ctrl.search_pending || ctrl.search_done || ctrl.download_pending || ctrl.download_done || ctrl.download_failed">
   <uib-tabset active="0"" justified="true" type="pills">
     <uib-tab index="0" heading="Simple search">
       <form>
@@ -32,7 +32,7 @@
             <div class="btn-group">
               <label class="btn btn-info" ng-model="ctrl.query.search" uib-btn-radio="'cluster'" ng-click="ctrl.query.return_type = 'json'">Cluster</label>
               <label class="btn btn-info" ng-model="ctrl.query.search" uib-btn-radio="'gene'" ng-click="ctrl.query.return_type = 'fasta'">Gene</label>
-              <label class="btn btn-info" ng-model="ctrl.query.search" uib-btn-radio="'domain'" ng-click="ctrl.query.return_type = 'aa_fasta'">NRPS/PKS Domain</label>
+              <label class="btn btn-info" ng-model="ctrl.query.search" uib-btn-radio="'domain'" ng-click="ctrl.query.return_type = 'fastaa'">NRPS/PKS Domain</label>
             </div>
           </div>
           <label class="col-sm-2 col-sm-offset-1 control-label">Return data in format: </label>
@@ -41,7 +41,7 @@
               <label ng-if="ctrl.graphicalPossible()" class="btn btn-info" ng-model="ctrl.query.return_type" uib-btn-radio="'json'">Graphical</label>
               <label class="btn btn-info" ng-model="ctrl.query.return_type" uib-btn-radio="'csv'">CSV</label>
               <label class="btn btn-info" ng-model="ctrl.query.return_type" uib-btn-radio="'fasta'">DNA FASTA</label>
-              <label ng-if="ctrl.query.search != 'cluster'" class="btn btn-info" ng-model="ctrl.query.return_type" uib-btn-radio="'aa_fasta'">AA FASTA</label>
+              <label ng-if="ctrl.query.search != 'cluster'" class="btn btn-info" ng-model="ctrl.query.return_type" uib-btn-radio="'fastaa'">AA FASTA</label>
             </div>
           </div>
         </div>
@@ -65,7 +65,7 @@
   </uib-tabset>
 </div>
 
-<div class="row" ng-show="ctrl.search_done || ctrl.download_done">
+<div class="row" ng-show="ctrl.search_done || ctrl.download_done || ctrl.download_failed">
   <div class="col-md-2 col-md-offset-10">
     <button class="btn btn-default btn-block" ng-click="ctrl.resetSearch()">New search</button>
   </div>
@@ -134,6 +134,11 @@
 <div class="row" ng-show="ctrl.download_done">
   Download ready.
 </div>
+
+<div class="row" ng-show="ctrl.download_failed">
+  <span class="text-warning">Download failed</span>: {{ctrl.failure_reason}}
+</div>
+
 
 <div class="row" ng-show="ctrl.search_pending || ctrl.download_pending">
   <i class="fa fa-circle-o-notch fa-spin fa-2x"></i> Searching, please wait...
