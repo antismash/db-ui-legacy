@@ -8,4 +8,5 @@
     'chart.js',
     'antismash.db.ui.routing'
   ]);
+  app.value('bowser', bowser);
 })();

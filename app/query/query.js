@@ -60,11 +60,12 @@
     });
   }]);
 
-  app.controller('QueryController', ['$http', '$window', '$stateParams', 'Downloader',
-    function ($http, $window, $stateParams, Downloader) {
+  app.controller('QueryController', ['$http', '$window', '$stateParams', 'Downloader', 'bowser',
+    function ($http, $window, $stateParams, Downloader, bowser) {
 
       var vm = this;
 
+      vm.bowser = bowser;
       vm.search_string = '';
       vm.isValidSearch = isValidSearch;
       vm.search = search;
@@ -81,6 +82,7 @@
       vm.resetSearch = resetSearch;
       vm.downloadCsv = downloadCsv;
       vm.exportFile = exportFile;
+      vm.getExportUrl = getExportUrl;
       vm.showSearch = showSearch;
       vm.graphicalPossible = graphicalPossible;
       vm.search_pending = false;
@@ -304,6 +306,32 @@
           vm.query.return_type = 'csv';
         }
         exportFile();
+      }
+
+      function getExportUrl() {
+        var search_string;
+        var search_type = 'cluster';
+        var return_type = 'csv';
+        if (vm.ran_simple_search) {
+          search_string = encodeURIComponent(vm.search_string);
+        } else {
+          search_type = vm.query.search;
+          return_type = vm.query.return_type;
+          search_string = encodeURIComponent(queryToString(vm.query.terms));
+        }
+        var search =  '/api/v1.0/export/' + search_type + '/' + return_type + '?search=' + search_string;
+        return search;
+      };
+
+      function queryToString(term){
+        if (term.term_type == 'expr') {
+          return '[' + term.category + ']' + term.term;
+        }
+        if (term.term_type == 'op') {
+          return '( ' + queryToString(term.left) + ' '
+                      + term.operation.toUpperCase() + ' '
+                      + queryToString(term.right) + ' )';
+        }
       }
 
       function exportFile(){

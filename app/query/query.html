@@ -52,9 +52,12 @@
           <button ng-if="ctrl.showSearch()" class="btn btn-primary btn-block" ng-click="ctrl.search()" ng-disabled="!ctrl.isValidSearch()">
             <i class="fa fa-search"></i> Search
           </button>
-          <button ng-if="!ctrl.showSearch()" class="btn btn-primary btn-block" ng-click="ctrl.exportFile()" ng-disabled="!ctrl.isValidSearch()">
+          <button ng-if="!ctrl.showSearch() && !ctrl.bowser.safari" class="btn btn-primary btn-block" ng-click="ctrl.exportFile()" ng-disabled="!ctrl.isValidSearch()">
             <i class="fa fa-download"></i> Download
           </button>
+          <a ng-if="!ctrl.showSearch() && ctrl.bowser.safari" class="btn btn-primary btn-block" ng-href="{{ctrl.getExportUrl()}}" ng-disabled="!ctrl.isValidSearch()" download>
+            <i class="fa fa-download"></i> Download
+          </a>
         </div>
 
         <div class="col-md-2 col-md-offset-8">
