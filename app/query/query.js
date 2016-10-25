@@ -192,9 +192,15 @@
       function loadMore() {
         var next_offset = vm.results.offset + vm.results.paginate;
         var search_obj = {
-          search_string: vm.search_string,
           offset: next_offset
         };
+
+        if (vm.ran_simple_search) {
+          search_obj.search_string = vm.search_string;
+        } else {
+          search_obj.query = vm.query;
+        }
+
         vm.loading_more = true;
         $http.post('/api/v1.0/search', search_obj).then(
           function(results){
