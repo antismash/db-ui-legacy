@@ -1,27 +1,41 @@
 describe('QueryController', function () {
   beforeEach(function () {
+    module('ui.router');
     module('antismash.db.ui.query');
   });
 
   var $httpBackend;
   var createController;
   var $window;
+  var $stateParams;
+  var Downloader;
+  var bowser;
   var ctrl;
 
   beforeEach(function () {
     $window = { open: jasmine.createSpy() };
+    bowser = {};
 
     module(function ($provide) {
       $provide.value('$window', $window);
+      $provide.value('bowser', bowser);
     });
 
     inject(function ($injector) {
 
       var $controller = $injector.get('$controller');
       $httpBackend = $injector.get('$httpBackend');
+      $stateParams = $injector.get('$stateParams');
+      Downloader = $injector.get('Downloader');
+      bowser = $injector.get('bowser');
 
       createController = function () {
-        return $controller('QueryController');
+        return $controller('QueryController', {
+          '$window': $window,
+          '$stateParams': $stateParams,
+          'Downloader': Downloader,
+          'bowser': bowser
+        });
       }
 
     });
@@ -88,9 +102,10 @@ describe('QueryController', function () {
 
 
     describe('loadMore', function () {
-      it('should load more data', function () {
+      it('should load more data on simple search', function () {
         $httpBackend.expectPOST('/api/v1.0/search', {search_string: '[type]fake', offset: 2});
         ctrl.search_string = "[type]fake";
+        ctrl.ran_simple_search = true;
         ctrl.results = {clusters: [], offset: 1, paginate:1};
         ctrl.loadMore();
         expect(ctrl.loading_more).toBe(true);
