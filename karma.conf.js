@@ -19,6 +19,7 @@ module.exports = function(config) {
       'vendor/angular/angular.js',
       'vendor/angular-resource/angular-resource.js',
       'vendor/angular-mocks/angular-mocks.js',
+      'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/jquery/dist/jquery.js',
       'vendor/jstree/dist/jstree.js',
       'vendor/jsTree-directive/jsTree.directive.js',
