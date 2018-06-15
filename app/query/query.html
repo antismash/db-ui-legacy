@@ -114,13 +114,13 @@
     <tbody>
       <tr class="cluster-list" ng-repeat="entry in ctrl.results.clusters" ng-click="ctrl.showCluster(entry)">
         <td>{{entry.genus}} {{entry.species}} {{entry.strain}}</td>
-        <td><a ng-href="{{ctrl.getNcbiUrl(entry.acc)}}" target="_blank" ng-show="entry.acc != null" ng-click="$event.stopPropagation();">{{entry.acc}}</a></td>
+        <td><a class="link-external" ng-href="{{ctrl.getNcbiUrl(entry.acc)}}" target="_blank" ng-show="entry.acc != null" ng-click="$event.stopPropagation();">{{entry.acc}}</a></td>
         <td class="cluster-type"><span class="badge" ng-class="entry.term">{{entry.cluster_number}}</span></td>
         <td>{{entry.description}}</td>
         <td class="digits">{{entry.start_pos}}</td>
         <td class="digits">{{entry.end_pos}}</td>
         <td><span ng-show="entry.cbh_description != null">{{entry.cbh_description}} ({{entry.similarity}}% of genes show similarity)</span></td>
-        <td><a ng-href="{{ctrl.getMibigUrl(entry.cbh_acc)}}" target="_blank" ng-show="entry.cbh_acc != null" ng-click="$event.stopPropagation();">{{entry.cbh_acc}}</a></td>
+        <td><a class="link-external" ng-href="{{ctrl.getMibigUrl(entry.cbh_acc)}}" target="_blank" ng-show="entry.cbh_acc != null" ng-click="$event.stopPropagation();">{{entry.cbh_acc}}</a></td>
       </tr>
     </tbody>
   </table>
