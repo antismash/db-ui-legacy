@@ -57,9 +57,11 @@ describe('GenomeCtrl', function () {
 
       getController = function (_bind) {
         var bind = _bind || {};
-        return $controller('GenomeCtrl', {
+        var ctrl = $controller('GenomeCtrl', {
           $scope: $scope, GenomeSvc: GenomeSvc
         }, bind);
+        ctrl.$onInit();
+        return ctrl;
       };
     });
   });

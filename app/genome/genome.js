@@ -10,10 +10,6 @@ angular.module('antismash.db.ui.genome', [])
     vm.loadGenome = loadGenome;
     vm.pending = false;
 
-    if (vm.genomeId){
-      loadGenome(vm.genomeId);
-    }
-
     $scope.$on("genomeSelected", function(event, args){
       if (vm.currentGenome &&
           vm.currentGenome.length > 0 &&
@@ -22,6 +18,12 @@ angular.module('antismash.db.ui.genome', [])
       }
       loadGenome(args);
     })
+
+    vm.$onInit = function () {
+      if (vm.genomeId){
+        loadGenome(vm.genomeId);
+      }
+    };
 
     function showCluster(entry) {
       var cluster_acc = entry.acc + '_c' + entry.cluster_number;
