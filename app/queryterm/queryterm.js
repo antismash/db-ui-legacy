@@ -60,6 +60,7 @@ angular.module('antismash.db.ui.queryterm', [])
         {val: 'compoundclass', desc: 'RiPP Compound class', category: 'Compound properties'},
         {val: 'profile', desc: 'Biosynthetic profile', category: 'antiSMASH predictions'},
         {val: 'asdomain', desc: 'NRPS/PKS domain', category: 'antiSMASH predictions'},
+        {val: 'smcog', desc: 'smCoG hit', category: 'antiSMASH predictions'},
         {val: 'strain', desc: 'Strain', category: 'Taxonomy'},
         {val: 'species', desc: 'Species', category: 'Taxonomy'},
         {val: 'genus', desc: 'Genus', category: 'Taxonomy'},
