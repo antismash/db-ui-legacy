@@ -14,7 +14,8 @@
         <th>Type</th>
         <th>From</th>
         <th>To</th>
-        <th>Most similar known cluster</th>
+        <th>Most similar MIBiG cluster</th>
+        <th>Similarity</th>
         <th>MIBiG BGC-ID</th>
       </tr>
     </thead>
@@ -24,7 +25,8 @@
         <td>{{entry.description}}</td>
         <td class="digits">{{entry.start_pos}}</td>
         <td class="digits">{{entry.end_pos}}</td>
-        <td><span ng-show="entry.cbh_description != null">{{entry.cbh_description}} ({{entry.similarity}}% of genes show similarity)</span></td>
+        <td><span ng-show="entry.cbh_description != null">{{entry.cbh_description}}</span></td>
+        <td class="digits"><span ng-show="entry.cbh_description != null">{{entry.similarity}} %</span></td>
         <td><a class="link-external" ng-href="{{ctrl.getMibigUrl(entry.cbh_acc)}}" target="_new" ng-show="entry.cbh_acc != null" ng-click="$event.stopPropagation();">{{entry.cbh_acc}}</a></td>
       </tr>
     </tbody>
