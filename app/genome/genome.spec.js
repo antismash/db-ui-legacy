@@ -123,7 +123,7 @@ describe('GenomeCtrl', function () {
   describe('showCluster', function () {
     it('should open the cluster in a new window', function () {
       ctrl = getController();
-      ctrl.showCluster({ acc: 'fake1234', cluster_number: 23 });
+      ctrl.showCluster({ assembly_id: 'fake1234', cluster_number: 23 });
       expect($window.open).toHaveBeenCalledWith('/output/fake1234/index.html#cluster-23', '_blank');
     });
   });
