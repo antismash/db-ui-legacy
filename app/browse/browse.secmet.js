@@ -25,11 +25,9 @@
       function activate_cb(event, ctx) {
         // Wrap in $apply so angular notices stuff changed.
         $scope.$apply(function(){
-          var id_parts = ctx.node.id.split(/_/);
-          id_parts.pop();
-          var cluster = id_parts.pop().replace(/c/, '');
-          var acc = id_parts.join('_');
-          var url = '/output/' + acc + '/index.html#cluster-' + cluster;
+          var assembly_id = ctx.node.original.assembly_id;
+          var cluster = ctx.node.original.cluster_number;
+          var url = '/output/' + assembly_id + '/index.html#cluster-' + cluster;
           $window.open(url, '_new');
         })
       }

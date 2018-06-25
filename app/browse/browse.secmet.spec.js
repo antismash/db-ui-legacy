@@ -35,7 +35,7 @@ describe('BrowseSecmetController', function () {
   });
 
   it('should open the activated cluster in a new window', function () {
-    $scope.activate_cb(null, {node: {id: 'foo1234_c23_nrps'}});
+    $scope.activate_cb(null, {node: {id: 'foo1234_c23_nrps', original: {assembly_id: 'foo1234', cluster_number: 23}}});
     expect($window.open).toHaveBeenCalledWith('/output/foo1234/index.html#cluster-23', '_new');
   })
 
