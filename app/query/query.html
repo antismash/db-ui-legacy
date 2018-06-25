@@ -121,7 +121,7 @@
         <td class="digits">{{entry.start_pos}}</td>
         <td class="digits">{{entry.end_pos}}</td>
         <td><span ng-show="entry.cbh_description != null">{{entry.cbh_description}}</span></td>
-        <td class="digits"><span ng-show="entry.cbh_description != null">{{entry.similarity}} %</span></td>
+        <td class="digits"><span ng-class="ctrl.hitQuality(entry.similarity)" ng-show="entry.cbh_description != null">{{entry.similarity}} %</span></td>
         <td><a class="link-external" ng-href="{{ctrl.getMibigUrl(entry.cbh_acc)}}" target="_blank" ng-show="entry.cbh_acc != null" ng-click="$event.stopPropagation();">{{entry.cbh_acc}}</a></td>
       </tr>
     </tbody>

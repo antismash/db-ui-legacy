@@ -75,6 +75,7 @@
       vm.loadMore = loadMore;
       vm.getNcbiUrl = getNcbiUrl;
       vm.getMibigUrl = getMibigUrl;
+      vm.hitQuality = hitQuality;
       vm.addEntry = addEntry;
       vm.removeEntry = removeEntry;
       vm.loadSimpleExample = loadSimpleExample;
@@ -233,6 +234,16 @@
         var acc = accession.split(/_/)[0];
         return "https://mibig.secondarymetabolites.org/repository/" + acc + "/index.html#cluster-1";
       };
+
+      function hitQuality(similarity) {
+        if (similarity >= 75) {
+          return "similarity-high";
+        }
+        if (similarity >= 50) {
+          return "similarity-medium";
+        }
+        return "similarity-low";
+      }
 
       function addEntry(){
         vm.search_objects.push({category: {val: 'type', desc:'BGC type'}, term: '', operation: 'and'});

@@ -8,6 +8,7 @@ angular.module('antismash.db.ui.genome', [])
     vm.getMibigUrl = getMibigUrl;
     vm.showCluster = showCluster;
     vm.loadGenome = loadGenome;
+    vm.hitQuality = hitQuality;
     vm.pending = false;
 
     $scope.$on("genomeSelected", function(event, args){
@@ -37,6 +38,16 @@ angular.module('antismash.db.ui.genome', [])
       var acc = accession.split(/_/)[0];
       return "http://mibig.secondarymetabolites.org/repository/" + acc + "/index.html#cluster-1";
     };
+
+      function hitQuality(similarity) {
+        if (similarity >= 75) {
+          return "similarity-high";
+        }
+        if (similarity >= 50) {
+          return "similarity-medium";
+        }
+        return "similarity-low";
+      }
 
     function loadGenome(genome_id) {
       vm.pending = true;
