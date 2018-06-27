@@ -17,7 +17,7 @@ See the [`LICENSE`](LICENSE) file for details.
 yarn install
 
 ## install vendor packages
-# the following line is need on on OSX + homebrew
+# the following line is need on OSX + homebrew
 # export NODE_PATH=/usr/local/lib/node_modules
 
 yarn global add bower
