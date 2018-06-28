@@ -27,13 +27,13 @@
         $state.go('query', {search_string: '[taxid]' + vm.general_stats.top_seq_taxon});
       }
 
-      $http.get('/api/v1.0/stats').then(function(response){
+      $http.get('/api/v2.0/stats').then(function(response){
         vm.general_stats = {
           'num_clusters': response.data.num_clusters,
           'top_secmet_species': response.data.top_secmet_species,
           'top_secmet_taxon': response.data.top_secmet_taxon,
           'top_secmet_taxon_count': response.data.top_secmet_taxon_count,
-          'top_secmet_acc': response.data.top_secmet_acc,
+          'top_secmet_assembly_id': response.data.top_secmet_assembly_id,
           'num_genomes': response.data.num_genomes,
           'num_sequences': response.data.num_sequences,
           'top_seq_taxon': response.data.top_seq_taxon,

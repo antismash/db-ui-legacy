@@ -29,10 +29,10 @@ describe('StatsController', function () {
   });
 
   it('should query for stats', function () {
-    $httpBackend.expectGET('/api/v1.0/stats').respond({
+    $httpBackend.expectGET('/api/v2.0/stats').respond({
       clusters: [{count: 1, name: 'nrps', description: 'Nonribosomal peptide'}],
       num_clusters: 1,
-      top_secmet_acc: 'NC_12345',
+      top_secmet_assembly_id: 'NC_12345',
       top_secmet_species: 'E. xample',
       top_secmet_taxon: 1234,
       top_secmet_taxon_count: 1,
