@@ -180,7 +180,7 @@ describe('GenomeSvc', function () {
   }));
 
   it('should call out to the API server', inject(function (GenomeSvc) {
-    $httpBackend.expectGET('/api/v1.0/genome/fake1234').respond([]);
+    $httpBackend.expectGET('/api/v1.0/assembly/fake1234').respond([]);
     GenomeSvc.getGenome('fake1234').then(function (result) {
       expect(result.data).toEqual([]);
     });

@@ -62,7 +62,7 @@ angular.module('antismash.db.ui.genome', [])
   }])
   .factory('GenomeSvc', function ($http) {
     var getGenome = function(genomeId) {
-      return $http.get('/api/v1.0/genome/' + genomeId);
+      return $http.get('/api/v1.0/assembly/' + genomeId);
     };
 
     return {
