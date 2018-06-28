@@ -54,6 +54,7 @@ angular.module('antismash.db.ui.queryterm', [])
     var categories = [
         {val: '', desc: '--- Select a category ---'},
         {val: 'acc', desc: 'NCBI Accession'},
+        {val: 'assembly', desc: 'NCBI assembly ID'},
         {val: 'type', desc: 'BGC type', category: 'antiSMASH predictions'},
         {val: 'monomer', desc: 'Monomer', category: 'antiSMASH predictions'},
         {val: 'compoundseq', desc: 'Compound sequence', category: 'Compound properties'},
