@@ -53,7 +53,7 @@ angular.module('antismash.db.ui.queryterm', [])
   .factory('CategorySvc', function () {
     var categories = [
         {val: '', desc: '--- Select a category ---'},
-        {val: 'acc', desc: 'NCBI Accession'},
+        {val: 'acc', desc: 'NCBI RefSeq Accession'},
         {val: 'assembly', desc: 'NCBI assembly ID'},
         {val: 'type', desc: 'BGC type', category: 'antiSMASH predictions'},
         {val: 'monomer', desc: 'Monomer', category: 'antiSMASH predictions'},
