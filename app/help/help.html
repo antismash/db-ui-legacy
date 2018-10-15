@@ -12,7 +12,53 @@
 
   <uib-accordion>
     <div uib-accordion-group heading="Search categories">
-      Text here.
+      <dl>
+        <dt>NCBI RefSeq accession</dt>
+        <dd>DNA record accession from RefSeq (e.g. NC_003888)</dd>
+
+        <dt>NCBI assembly ID</dt>
+        <dd>ID of an NCBI assembly project (e.g. GCF_000203835)</dd>
+
+        <dt>BGC type</dt>
+        <dd>Biosynthetic gene cluster type as predicted by antiSMASH (e.g. lanthipeptide)</dd>
+
+        <dt>Monomer</dt>
+        <dd>Monomer contained in in the cluster product (e.g. athr)</dd>
+
+        <dt>Biosynthetic profile</dt>
+        <dd>Hit against one of the pHMMs used by antiSMASH to identify core biosynthetic enzymes (e.g. LANC_like)</dd>
+
+        <dt>NRPS/PKS domain</dt>
+        <dd>Hit against one of the pHMMs specific to NRPS/PKS domains (e.g. PKS_AT)</dd>
+
+        <dt>Terpene synthase type</dt>
+        <dd>Hit against a specific terpene synthase type (e.g. STC - seqsquiterpene synthase)</dd>
+
+        <dt>Terpene cyclisation from C atom</dt>
+        <dt>Terpene cyclisation to C atom</dt>
+        <dd>C atoms in the terpene structure that are being cyclised by the terpene cyclase</dd>
+
+        <dt>smCoG hit</dt>
+        <dd>Hit against an smCoG profile (e.g. SMCOG1019 - aminotransferase)</dd>
+
+        <dt>Compound sequence</dt>
+        <dd>Amino acid sequence components of a RiPP product</dd>
+
+        <dt>RiPP compound class</dt>
+        <dd>Class of the RiPP cluster (e.g. Class I)</dd>
+
+        <dt>Strain, Species, Genus, Family, Order, Class, Phylum, Superkingdom</dt>
+        <dd>Hit by taxonomic level</dd>
+
+        <dt>ClusterBlast Hit</dt>
+        <dd>Hit against a given ClusterBlast cluster</dd>
+
+        <dt>KnownClusterBlast Hit</dt>
+        <dd>Hit against a given MIBiG cluster</dd>
+
+        <dt>SubClusterBlast Hit</dt>
+        <dd>Hit against a given SubClusterBlast cluster</dd>
+      </dl>
     </div>
   </uib-accordion>
 
