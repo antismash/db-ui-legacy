@@ -92,6 +92,8 @@
       vm.download_done = false;
       vm.loading_more = false;
       vm.ran_simple_search = false;
+      vm.paginate = 0;
+      vm.offset = 0;
 
       vm.hide_stats = true;
       vm.clusters_by_type_options = {
@@ -359,6 +361,15 @@
         } else {
           search_obj = {query: vm.query};
         }
+
+        if (vm.paginate != 0) {
+          search_obj.paginate = vm.paginate;
+        }
+
+        if (vm.offset != 0) {
+          search_obj.offset = vm.offset;
+        }
+
         var format = 'csv';
         if (vm.query && vm.query.return_type) {
           format = vm.query.return_type;
