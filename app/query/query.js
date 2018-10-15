@@ -112,6 +112,7 @@
       vm.query = {
         search: 'cluster',
         return_type: 'json',
+        verbose: false,
         terms: {
           term_type: 'expr',
           category: '',
