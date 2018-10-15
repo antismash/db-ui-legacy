@@ -5,8 +5,7 @@ var sourcemaps = require('gulp-sourcemaps');
 
 var compress_sources = [
   'vendor/angular-bootstrap-toggle-switch/angular-toggle-switch.js',
-  'vendor/bowser/src/bowser.js',
-  'vendor/jsTree-directive/jsTree.directive.js'
+  'vendor/bowser/src/bowser.js'
 ];
 
 var copy_sources = [
