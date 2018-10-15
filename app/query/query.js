@@ -142,10 +142,10 @@
        */
       function isValidTerm(term) {
         if (term.term_type == 'expr') {
-          if (term.category == '') {
+          if (term.category === '') {
             return false;
           }
-          if (term.term == '') {
+          if (term.term === '') {
             return false;
           }
           return true;
