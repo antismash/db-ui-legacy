@@ -65,6 +65,8 @@ angular.module('antismash.db.ui.queryterm', [])
         {val: 'terpenefromcarbon', desc: 'Terpene cyclisation from carbon atom', category: 'antiSMASH predictions'},
         {val: 'terpenetocarbon', desc: 'Terpene cyclisation to carbon atom', category: 'antiSMASH predictions'},
         {val: 'smcog', desc: 'smCoG hit', category: 'antiSMASH predictions'},
+        {val: 'contigedge', desc: 'Cluster on contig edge', category: 'Quality filters'},
+        {val: 'minimal', desc: 'Cluster with minimal predictions', category: 'Quality filters'},
         {val: 'strain', desc: 'Strain', category: 'Taxonomy'},
         {val: 'species', desc: 'Species', category: 'Taxonomy'},
         {val: 'genus', desc: 'Genus', category: 'Taxonomy'},
